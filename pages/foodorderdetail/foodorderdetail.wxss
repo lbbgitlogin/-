@@ -1,0 +1,67 @@
+.m-cells-wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+  padding: 20rpx 30rpx
+}
+.m-cells-time{
+  color: rgb(102, 102, 102);
+  margin-top: 10rpx
+}
+.m-cells-right{
+  color: #db384c
+}
+.m-cells .top{font-size: 24rpx;color: rgb(51, 51, 51);display: flex;padding: 20rpx 30rpx;justify-content: space-between;align-items: center}
+.havefood{font-size: 30rpx;font-weight: 600}
+.remark{background: rgb(244, 244, 244);color: rgb(51, 51, 51);padding: 20rpx 30rpx;font-size: 24rpx;height: 110rpx;width: 84%;margin: 0 auto}
+.conter{margin-top: 10rpx}
+.fooddetail-title{padding-left: 30rpx;color: rgb(153, 153, 153);font-size: 22rpx}
+.message{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12rpx 30rpx;
+  font-size: 24rpx;
+  color: rgb(51, 51, 51)
+}
+.detail{padding: 20rpx 30rpx;font-size: 28rpx;color: #666;background: #fff;position: relative}
+.detail::before {content:" ";position: absolute;left: 30rpx;top: 0;right: 30rpx;height: 1px;border-top: 1px solid #D9D9D9;color: #D9D9D9;-webkit-transform-origin: 0 0;transform-origin: 0 0;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+.detail::after {content: " ";position: absolute;left: 0rpx;bottom: 0;right: 0rpx;height: 1px;border-bottom: 1px solid #D9D9D9;color: #D9D9D9;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+.detail-center{display: flex;justify-content: space-between}
+.m-total-info{padding: 24rpx 30rpx;font-size: 28rpx;display: flex;justify-content: space-between;align-items: center;background: #fff;}
+.m-total-info label{color: #DB384C;}
+.m-cells-nav{
+    padding: 35rpx 0 ;
+   
+}
+.m-cells-nav-a{
+  /* display: flex;
+  flex-direction: row; */
+  /* line-height: 120rpx; */
+}
+.m-cells-nav-a text{
+  position: absolute;
+  top:57rpx;
+  left: 143rpx;
+
+}
+.m-cells-nav-a image:nth-child(2){
+position: relative;
+top:-119rpx;
+left: 595rpx
+
+}
+#imahe{
+  position: relative;
+top:-129rpx;
+left: 595rpx
+}
+.con{
+  position: absolute;
+  top: -25rpx;
+  left: 489rpx;
+  width: 50rpx;
+  height: 50rpx;
+  
+}

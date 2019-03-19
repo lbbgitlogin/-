@@ -1,0 +1,19 @@
+<view class="page">
+  <view class='top'>
+    请选择取消订单的原因
+    <label style='color:#db384c'>（必选）</label>
+  </view>
+  <view class="page__bd">
+    <view class="section section_gap">
+      <radio-group class="radio-group" bindchange="radioChange">
+        <radio color='#1d91e7' class="radio" wx:for-items="{{reasonlist}}" value="{{item.Id}}"   checked="{{item.checked}}" >
+          <text>{{item.Text}}</text>
+        </radio>
+        <textarea placeholder='请填写' value="{{remark}}" bindinput="inputRemark" wx:if="{{show}}" maxlength='100'></textarea>
+      </radio-group>
+    </view>
+  </view>
+</view>
+
+<view class='cancel' bindtap='cancel' wx:if="{{peinum!=1}}">确认取消</view>
+<view class='cancel' bindtap='quxiao' wx:else>确认取消</view>

@@ -1,0 +1,342 @@
+<import src="../../wxParse/wxParse.wxml" />
+
+<block wx:if="{{isdata}}">
+  <view class="m-banner-ad">
+    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="300">
+      <swiper-item wx:for="{{ProductInfo.productPicList}}" wx:for-item="item">
+        <image class="slide-image" mode="aspectFill" src="{{item.Path}}" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="m-cells">
+    <view class="m-cell m-info-box">
+      <view class="m-cell-bd">
+        <text>{{ProductInfo.ProductName}}</text>
+        <label>{{ProductInfo.SellingPoints}}</label>
+        <view class="m-info-price">
+          <text>¥</text>{{ProductInfo.ShowPrice}}
+          <text class="m-info-delprice" wx:if="{{ProductInfo.EventType=='FIGHTGROUP'}}">¥{{ProductInfo.SalePrice}}</text>
+          <text class="m-info-delprice" wx:else>¥{{ProductInfo.MarketPrice}}</text>
+          <label class="m-price-tip" wx:if="{{ProductInfo.EventType=='FIGHTGROUP'}}">{{ProductInfo.UserLimit}}人团省{{ProductInfo.SavePrice}}元</label>
+
+          <!--拼团倒计时-->
+          <view class="progressBarBox" wx:if="{{ProductInfo.EventType=='FIGHTGROUP'}}">
+            还剩:
+            <block wx:if="{{Time.day>1}}">
+              <text class="m-FGB-time">{{Time.day}}</text>
+              <text class="m-FGB-time-tip">天</text>
+            </block>
+            <block wx:else>
+              <text class="m-FGB-time-tip">:</text>
+              <text class="m-FGB-time">{{Time.hour}}</text>
+              <text class="m-FGB-time-tip">:</text>
+              <text class="m-FGB-time">{{Time.min}}</text>
+              <text class="m-FGB-time-tip">:</text>
+              <text class="m-FGB-time">{{Time.sec}}</text>
+            </block>
+          </view>
+          <view class="progressBarBox" wx:if="{{FGType==2 && ProductInfo.EventType=='FIGHTGROUP'}}">
+            <view class="progressBarBox-content">
+              <label style="width:{{(ProductInfo.UserNum/ProductInfo.UserLimit)*100}}%"></label>
+              <view class="progressBarBox-text">
+                <text>还差{{ProductInfo.UserLimit-ProductInfo.UserNum}}人成团</text>
+              </view>
+            </view>
+          </view>
+
+          <!--拼团倒计时-->
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ProductInfo.SpecLst.length>0}}" class="m-cell m-cell-access m-info-sp" bindtap="ckselectsp">
+      <view class="m-cell-bd">
+        <text class="m-info-tip">已选</text>
+        <label class="m-imfo-sp-selext">
+          <block wx:for="{{ProductInfo.SpecLst}}" wx:for-item="items">
+            <block wx:for="{{items.svLst}}" wx:for-item="item">
+              <block wx:if="{{item.IsChecked}}">{{item.Name}} </block>
+            </block>
+          </block>
+        </label>
+      </view>
+      <view class="m-cell-ft"></view>
+    </view>
+  </view>
+  <view class="m-panel m-panel-access m-comment m-fg-comment" wx:if="{{ProductInfo.EventType=='FIGHTGROUP' && UDactivity.length>0}}">
+    <view class="m-panel-hd">进行中的拼团</view>
+    <view class="m-panel-bd" style="{{!isAll?'max-height:240rpx;overflow:hidden;':''}}">
+      <view bindtap="groupBuying" wx:for="{{UDactivity}}" wx:for-item="item" data-InfoId="{{item.OwnGroupId}}" class="m-media-box m-media-box-appmsg">
+        <view class="m-media-box-hd">
+          <image class="m-media-box-thumb" src="{{item.photo}}" />
+        </view>
+        <view class="m-media-box-bd">
+          <label class="m-media-box-title">{{item.NickName}}</label>
+          <text class="m-media-box-desc">正在开团中</text>
+        </view>
+        <view class="m-media-box-bd m-media-box-bd-tip">
+          <label class="m-media-box-title m-media-box-title-tip">还差{{item.UserLimit-item.UserNum}}人成团</label>
+          <text wx:if="{{item.Time.day>1}}" class="m-media-box-desc m-media-box-desc-tip">剩余 {{item.Time.day}}天 结束
+          </text>
+          <text wx:else class="m-media-box-desc m-media-box-desc-tip">剩余 {{item.Time.hour}}:{{item.Time.min}}:{{item.Time.sec}} 结束
+          </text>
+        </view>
+        <view class="m-media-box-bd">
+          <button class="u-btn u-btn-default">立即参团</button>
+        </view>
+      </view>
+    </view>
+    <view class="m-panel-ft" bindtap="lookall" wx:if="{{ProductInfo.EventType=='FIGHTGROUP' && UDactivity.length>2}}">
+      <a href="javascript:void(0);" class="m-cell m-cell-access m-cell-link">
+        <view class="m-cell-bd" wx:if="{{!isAll}}">查看全部参团</view>
+        <view class="m-cell-bd" wx:else>收起</view>
+        <text class="m-cell-ft"></text>
+      </a> 
+    </view>
+  </view>
+
+  <!--参团部分-->
+
+  <!--参团部分-->
+  <view class="m-panel m-panel-access m-comment {{ProductInfo.totalSum<=0?'hide':'hide'}}">
+    <view class="m-panel-hd">评价（{{ProductInfo.totalSum}}）
+      <label>好评度
+        <text>{{ProductInfo.Goodgrade}}%</text>
+      </label>
+    </view>
+    <view class="m-panel-bd">
+      <a href="javascript:void(0);" class="m-media-box m-media-box-appmsg">
+        <view class="m-media-box-hd">
+          <image class="m-media-box-thumb" src="" />
+        </view>
+        <view class="m-media-box-bd">
+          <label class="m-media-box-title">dreamlist</label>
+          <text class="m-media-box-desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</text>
+          <view class="m-media-box-info">
+            <view class="m-media-box-info-meta m-start">★★★☆☆</view>
+            <view class="m-media-box-info-meta m-tiem">2016-11-19</view>
+          </view>
+        </view>
+      </a> 
+    </view>
+    <view class="m-panel-ft">
+      <a href="javascript:void(0);" class="m-cell m-cell-access m-cell-link">
+        <view class="m-cell-bd">查看全部评论</view>
+        <text class="m-cell-ft"></text>
+      </a> 
+    </view>
+  </view>
+  <view class="m-panel m-panel-access m-detail">
+    <view class="m-tab">
+      <view class="m-navbar">
+        <view class="m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" bindtap="picDetail">
+          图文详情
+        </view>
+        <view class="m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" bindtap="spcParam">
+          规格参数
+        </view>
+        <view class="m-navbar-item {{tapindex==3?'m-navbar-item-on':''}}" bindtap="packingList">
+          包装清单
+        </view>
+        <view wx:if="{{ProductInfo.EventType=='FIGHTGROUP'}}" class="m-navbar-item {{tapindex==4?'m-navbar-item-on':''}}" bindtap="afterService">
+          拼团玩法
+        </view>
+        <view wx:else class="m-navbar-item {{tapindex==4?'m-navbar-item-on':''}}" bindtap="afterService">
+          售后服务
+        </view>
+      </view>
+    </view>
+    <view class="{{tapindex==1?'':'hide'}}">
+      <template is="wxParse" data="{{wxParseData:pinfo.nodes}}" />
+    </view>
+    <view class="{{tapindex==2?'':'hide'}}">
+      <view wx:for="{{Parameters}}" wx:for-item="items">
+        <div class="g-flex">
+          <div class="g-flex-item">{{items.name}}</div>
+        </div>
+        <view wx:for="{{items.data}}" wx:for-item="item">
+          <div class="g-flex">
+            <div class="g-flex-item">{{item.ParameterItemName}}</div>
+            <div class="g-flex-item">{{item.ParameterItemValue}}</div>
+          </div>
+        </view>
+      </view>
+    </view>
+    <view class="{{tapindex==3?'':'hide'}} m-Packinglist">
+      {{ProductInfo.Packinglist}}
+    </view>
+    <view wx:if="{{ProductInfo.EventType=='FIGHTGROUP'}}" class="{{tapindex==4?'':'hide'}} m-Packinglist" style="font-size:24rpx;">
+      <view style="text-align:left;line-height:40rpx;">拼团规则 </view>
+      <view style="text-align:left;line-height:40rpx;">活动时间：{{ProductInfo.EventStartTime}}-{{ProductInfo.EventEndTime}}</view>
+      <view style="text-align:left;line-height:40rpx;">支付开团，需在{{ProductInfo.TimeLimit}}天内，成功邀请3人参团，人数不足自动退款。</view>
+      <view style="text-align:left;line-height:40rpx;">拼团商品会尽快发货。</view>
+      <view style="text-align:left;line-height:40rpx;color:#DB384C">
+        <view>① 选择商品</view>
+        <view>② 支付开团或参团</view>
+        <view>③ 等待好友参团支付</view>
+        <view>④ 达到人数拼团成功</view>
+      </view>
+      <view style="text-align:left;line-height:40rpx;">如在限定时间内参团人数没达成，系统自动退款。</view>
+    </view>
+    <view wx:else class="{{tapindex==4?'':'hide'}} m-Packinglist">
+      <template is="wxParse" data="{{wxParseData:Services.nodes}}" />
+    </view>
+    <view class="m-tips" wx:if="{{!IsChannel}}">
+      <view class="m-tips-logo">
+        <image mode="aspectFit" src="../../img/kukeduo100.png"></image>
+      </view>
+      <view class="m-tips-str">酷客多提供技术支持 v1.3.5</view>
+    </view>
+  </view>
+  <!--<view class="u-cleanbox"></view>-->
+  <!--<view class="m-footer-btn" wx:if="{{ProductInfo.EventType!='FIGHTGROUP'}}">
+    <view class="m-footer-btn-list">
+      <view class="m-footer-btn-item" data-id="{{ProductInfo.Id}}">
+        <view class="m-footer-btn-icon">
+          <contact-button size="27" type="default-dark" session-from="weapp">
+          </contact-button>
+          <label class="iconfont icon-more "></label>
+        </view>
+        <text>客服</text>
+      </view>
+      <view class="m-footer-btn-item" bindtap="PDCollection" data-id="{{ProductInfo.Id}}">
+        <view class="m-footer-btn-icon">
+          <label class="iconfont {{isCollection?'icon-favoritesfilling':'icon-favorite'}}" style="{{isCollection?'color:#DB384C':''}}"></label>
+        </view>
+        <text>{{isCollection?'已收藏':'收藏'}}</text>
+      </view>
+      <navigator url="../../pages/cart/cart" open-type="switchTab" class="m-footer-btn-item">
+        <view class="m-footer-btn-icon">
+          <label class="iconfont icon-cart "></label>
+        </view>
+        <text>购物车</text>
+      </navigator>
+    </view>
+    <block wx:if="{{ProductInfo.Stock<=0}}">
+      <view class="m-footer-btn-main m-footer-desable">
+        立即购买
+      </view>
+      <view class="m-footer-btn-main m-footer-desable">
+        库存不足
+      </view>
+    </block>
+    <block wx:if="{{ProductInfo.Status=='offline'||ProductInfo.Pstatus=='offline'||ProductInfo.IsDelete}}">
+      <view class="m-footer-btn-main m-footer-desable">
+        立即购买
+      </view>
+      <view class="m-footer-btn-main m-footer-desable">
+        商品已下架
+      </view>
+    </block>
+    <block wx:else>
+      <view class="m-footer-btn-main m-now" bindtap="buynow">
+        立即购买
+      </view>
+      <view wx:if="{{ProductInfo.SpecLst.length>0}}" class="m-footer-btn-main" bindtap="ckselectsp">
+        加入购物车
+      </view>
+      <view wx:else class="m-footer-btn-main" catchtap="addCard">
+        加入购物车
+      </view>
+    </block>
+  </view>
+  <view class="m-footer-btn m-fg-btn" wx:if="{{ProductInfo.EventType=='FIGHTGROUP'}}">
+    <view class="m-footer-btn-list">
+      <view class="m-footer-btn-item" data-id="{{ProductInfo.Id}}" style="width:50%">
+        <view class="m-footer-btn-icon">
+          <contact-button size="27" type="default-dark" session-from="weapp">
+          </contact-button>
+          <label class="iconfont icon-more "></label>
+        </view>
+        <text>客服</text>
+      </view>
+      <view class="m-footer-btn-item" bindtap="PDCollection" data-id="{{ProductInfo.Id}}" style="width:50%">
+        <view class="m-footer-btn-icon">
+          <label class="iconfont {{isCollection?'icon-favoritesfilling':'icon-favorite'}}" style="{{isCollection?'color:#DB384C':''}}"></label>
+        </view>
+        <text>{{isCollection?'已收藏':'收藏'}}</text>
+      </view>
+    </view>
+    <block wx:if="{{ProductInfo.Stock<=0||ProductInfo.Status=='offline'||ProductInfo.Pstatus=='offline'||ProductInfo.IsDelete}}">
+      <view class="m-footer-btn-main m-footer-desable u-fg">
+        <view>¥{{ProductInfo.SalePrice}}</view>
+        <view>普通购买</view>
+      </view>
+      <view class="m-footer-btn-main m-footer-desable u-fg">
+        <view>¥{{ProductInfo.ShowPrice}}</view>
+        <view>立即开团</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="m-footer-btn-main m-now u-fg" bindtap="ILObuynow">
+        <view>¥{{ProductInfo.SalePrice}}</view>
+        <view>普通购买</view>
+      </view>
+      <view wx:if="{{ProductInfo.SpecLst.length>0}}" class="m-footer-btn-main u-fg" bindtap="ckselectsp">
+        <view>¥{{ProductInfo.ShowPrice}}</view>
+        <view>立即开团</view>
+      </view>
+      <view wx:else class="m-footer-btn-main u-fg" catchtap="immediatelyOffered">
+        <view>¥{{ProductInfo.ShowPrice}}</view>
+        <view>立即开团</view>
+      </view>
+    </block>
+  </view>-->
+  <view class="m-panel-sp {{selectsp==0?'hide':''}} " bindtap="closesp">
+    <view class="m-panel-sp-content {{selectct==0?'bounceOutDown animated':'bounceInUp animated'}}" catchtap>
+      <view class="m-panel-sp-pinfo">
+        <view class="m-panel-sp-pimg">
+          <image src="{{selectimg}}" />
+        </view>
+        <view class="m-panel-sp-pname">
+          <view class="m-pprice">¥{{ProductInfo.ShowPrice}}</view>
+          <view class="m-pstock">库存{{ProductInfo.Stock}}件</view>
+          <view wx:if="{{ProductInfo.SpecLst.length}}" class="m-pstock">已选择：
+            <block wx:for="{{ProductInfo.SpecLst}}" wx:for-item="items">
+              <block wx:for="{{items.svLst}}" wx:for-item="item">
+                <block wx:if="{{item.IsChecked}}">{{item.Name}} </block>
+              </block>
+            </block>
+          </view>
+        </view>
+        <icon type="cancel" class="m-panel-sp-icon" color="#888" catchtap="closesp" />
+      </view>
+      <scroll-view class="m-panel-sp-listbox" scroll-y="true">
+        <block wx:for="{{ProductInfo.SpecLst}}" wx:for-item="items">
+          <view class="m-panel-sp-listbox-item">
+            <view class="m-cells-title">{{items.Name}}</view>
+            <view class="m-panel-sp-labellist">
+              <block wx:for="{{items.svLst}}" wx:for-item="item">
+                <label wx:if="{{item.IsChecked}}" class="m-panel-sp-sellabel">{{item.Name}}</label>
+                <label wx:else data-ckid="{{items.ckid}}" data-spid="{{item.Id}}" catchtap="selectsp">{{item.Name}}</label>
+              </block>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+      <view class="m-m-panel-sp-btn">
+        <view class="m-m-panel-sp-lbtn" style="{{ProductInfo.EventType=='FIGHTGROUP'?'display:none':''}}">
+          <view class="u-cart-num">
+            <view class="u-num-btn" catchtap="sub">-</view>
+            <input type="number" value="{{numval}}" bindblur="writenum" />
+            <view class="u-num-btn" catchtap="add">+</view>
+          </view>
+        </view>
+        <view class="m-m-panel-sp-rbtn" style="width:100%" catchtap="immediatelyOffered" wx:if="{{ProductInfo.EventType=='FIGHTGROUP'}}">立即开团</view>
+        <view class="m-m-panel-sp-rbtn" catchtap="addCard" wx:else>加入购物车</view>
+      </view>
+    </view>
+  </view>
+</block>
+<view class="m-nullpage" wx:else>
+  <view class="m-nullpage-middle">
+    <label class="iconfont icon-meiyougengduo"></label>
+    <view class="m-null-tip">
+      <text>什么都没有</text>
+    </view>
+  </view>
+</view>
+<view class="u-tap-btn" hover-class="none" >
+  <navigator url="../index/index" open-type="switchTab" class="u-go-home" hover-class="none">
+    <view class="iconfont icon-home"></view>
+  </navigator>
+</view>

@@ -1,0 +1,105 @@
+<view class="home-top-box">
+  <view class="top-img001">
+    <image src="../../img/img001.png" class="move1"></image>
+  </view>
+  <view class="top-img003">
+    <image src="../../img/img002.png" class="move2"></image>
+  </view>
+  <view class="top-tip">今日付款金额(元)</view>
+  <view class="top-money">{{money}}</view>
+  <view class="g-flex-box">
+    <view class="flex-item">
+      <view class="flex-item-num">{{Info[1].DataCount}}</view>
+      <view class="flex-item-text">待处理订单</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-num">{{Info[2].DataCount}}</view>
+      <view class="flex-item-text">订单总数</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-num">{{Info[3].DataCount}}</view>
+       <view class="flex-item-text">订单总额</view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-num">{{Info[16].DataCount}}</view>
+      <view>会员总数</view>
+    </view>
+  </view>
+</view>
+<view class="home-content-box">
+  <view class="content-box-item">
+    <view class="content-title">订单</view>
+    <view class="order-box">
+      <view class="order-item">
+        <view class="order-item-num">{{Info[4].DataCount}}</view>
+        <view>昨日成功</view>
+        <view>支付用户数</view>
+      </view>
+      <view class="order-item">
+        <view class="order-item-num">{{Info[5].DataCount}}</view>
+        <view>昨日成功</view>
+        <view>订单数</view>
+      </view>
+      <view class="order-item">
+        <view class="order-item-num">{{Info[6].DataCount}}</view>
+        <view>昨日成功</view>
+        <view>下单金额</view>
+      </view>
+      <view class="order-item">
+        <view class="order-item-num">{{Info[7].DataCount}}</view>
+        <view>过去一周</view>
+        <view>下单金额</view>
+      </view>
+    </view>
+  </view>
+  <view class="content-box-item">
+    <view class="content-title">用户</view>
+    <view class="order-box">
+      <view class="order-item">
+        <view class="order-item-num">{{Info[8].DataCount}}</view>
+        <view>昨日</view>
+        <view>新用户数</view>
+      </view>
+      <view class="order-item">
+        <view class="order-item-num">{{Info[9].DataCount}}</view>
+        <view>昨日购买</view>
+        <view>用户数</view>
+      </view>
+      <view class="order-item">
+        <view class="order-item-num">{{Info[10].DataCount}}</view>
+        <view>今日登陆</view>
+        <view>用户数</view>
+      </view>
+      <view class="order-item">
+        <view class="order-item-num">{{Info[11].DataCount}}</view>
+        <view>昨日登陆</view>
+        <view>用户数</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="content-box-item">
+    <view class="content-title">商品</view>
+    <view class="order-box" style="border:none;">
+      <view class="order-item">
+        <view class="order-item-num">{{Info[12].DataCount}}</view>
+        <view>上架商品</view>
+        <view>总数</view>
+      </view>
+      <view class="order-item">
+        <view class="order-item-num">{{Info[13].DataCount}}</view>
+        <view>上架商品</view>
+        <view>月销售量</view>
+      </view>
+      <view class="order-item">
+        <view class="order-item-num">{{Info[14].DataCount}}</view>
+        <view>上架商品</view>
+        <view>库存量</view>
+      </view>
+      <view class="order-item">
+        <view class="order-item-num">{{Info[15].DataCount}}</view>
+        <view>商家分类</view>
+      </view>
+    </view>
+  </view>
+</view>

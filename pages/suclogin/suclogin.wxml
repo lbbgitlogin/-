@@ -1,0 +1,6 @@
+<!--pages/suclogin/suclogin.wxml-->
+<view class='suc_text1'>恭喜你，注册成功！</view>
+<view class='suc_text2'>欢迎您使用酷客多商家版小程序</view>
+<view class='suc_text2'>更多功能操作请前往PC后台体验</view>
+<view class='suc_text2'>登录网址：http://www.kukeduo.cn</view>
+<view class='login_page' bindtap='login'>进入登录页</view>

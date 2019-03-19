@@ -1,0 +1,63 @@
+<view class="home-top-box">
+  <view class="top-img001">
+    <image src="../../img/img001.png" class="move1"></image>
+  </view>
+  <view class="top-img003">
+    <image src="../../img/img002.png" class="move2"></image>
+  </view>
+  <view class="top-tip">今日门店收益
+    <image src='../../img/tishi.png' bindtap='tips'></image>
+    <view class='shouyi' wx:if='{{tishi}}'>今日用户下单到门店的金额</view>
+    <view class='sanjiao' wx:if='{{tishi}}'></view>
+  </view>
+  <view class="top-money">{{Info[2].DataCount}}</view>
+  <view class="bottom-tip">昨日 <label>{{Info[4].DataCount}}</label></view>
+   <view class="g-flex-box">
+    <view class="flex-item">
+      <view class="flex-item-text">{{Info[3].DataCount}}</view>
+      <view class="flex-item-num">待处理订单</view>
+      <view class='flex-item-border'></view>
+    </view>
+    <view class="flex-item">
+      <view class="flex-item-text">{{Info[1].DataCount}}</view>
+      <view class="flex-item-num">已完成订单</view>
+      <view class='flex-item-border'></view>
+    </view>
+    <view class="flex-item">
+      <view>{{Info[0].DataCount}}</view>
+      <view class="flex-item-num">订单总金额</view>
+      <view class='flex-item-border'></view>
+    </view>
+     <view class="flex-item">
+      <view>{{Info[5].DataCount}}</view>
+      <view class="flex-item-num">会员总数</view>
+    </view>
+  </view> 
+  <view class='content'>
+    <view class='content-item' bindtap='goorder'>
+      <image class='content-item-img' src='../../img/bag.png'></image>
+      <view class='content-item-text'>门店订单</view>
+    </view>
+    <view class='content-item' bindtap='goserve'>
+      <image class='content-item-img' src='../../img/shopping-list.png'></image>
+      <view class='content-item-text'>预约核销</view>
+    </view>
+    <view class='content-item' bindtap='goziti'>
+      <image class='content-item-img' src='../../img/basket.png'></image>
+      <view class='content-item-text'>自提核销</view>
+    </view>
+     <view class='content-item' bindtap='youhuiquan'>
+      <image class='content-item-img' src='../../img/youhuiquan.jpg'></image>
+      <view class='content-item-text'>优惠券核销</view>
+    </view>
+    <view class='content-item' bindtap='gatheringCode'>
+      <image class='content-item-img' src='../../img/qr.png'></image>
+      <view class='content-item-text'>门店收款码</view>
+    </view>
+    <view class='content-item' bindtap='goBack'>
+      <image class='content-item-img' src='../../img/lock.png'></image>
+      <view class='content-item-text'>注销登录</view>
+    </view>
+    
+  </view>
+</view>

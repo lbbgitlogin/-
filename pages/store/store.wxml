@@ -1,0 +1,84 @@
+<view class="m-banner">
+  <view class="top-img001">
+    <image src="../../img/img001.png" class="move1"></image>
+  </view>
+  <view class="top-img003">
+    <image src="../../img/img002.png" class="move2"></image>
+  </view>
+  <view class="m-logo">
+    <image src="{{LogoPath}}" />
+  </view>
+  <view class="m-shopinfo">
+    <label>{{ShopName}}</label>
+    <label class="iconfont icon-qijiandian"></label>
+    <text>手机号：{{Phone}}</text>
+  </view>
+</view>
+
+<view class="m-panel-bd" style="margin-top:30rpx;">
+  <view class="m-media-box m-media-box-small-appmsg">
+    <view class="m-cells">
+      <navigator url="../modifyphone/modifyphone" class="m-cell m-cell-access">
+        <view class="m-cell-hd " style="color:#F77C07;">
+          <label class="iconfont icon-shouji "></label>
+        </view>
+        <view class="m-cell-bd m-cell-primary">
+          <p>修改手机</p>
+        </view>
+        <text class="m-cell-ft"></text>
+      </navigator>
+      <navigator url="../modifypassword/modifypassword" class="m-cell m-cell-access">
+        <view class="m-cell-hd " style="color:#FF5577;">
+          <label class="iconfont icon-42"></label>
+        </view>
+        <view class="m-cell-bd m-cell-primary">
+          <p>修改密码</p>
+        </view>
+        <text class="m-cell-ft"></text>
+      </navigator>
+      <navigator url="../storerenewal/storerenewal" class="m-cell m-cell-access">
+        <view class="m-cell-hd" style="color:#F77A04;">
+          <label class="iconfont icon-tongzhizhongxindaixufei "></label>
+        </view>
+        <view class="m-cell-bd m-cell-primary">
+          <p>店铺续费</p>
+        </view>
+        <text class="m-cell-ft"></text>
+      </navigator>
+      <navigator url="../scan/scan" class="m-cell m-cell-access">
+        <view class="m-cell-hd" style="color:#db384c;">
+          <label class="iconfont icon-importedlayerscopy2" style="font-size:32rpx;margin-left:4rpx"></label>
+        </view>
+        <view class="m-cell-bd m-cell-primary">
+          <p>扫码核销</p>
+        </view>
+        <text class="m-cell-ft"></text>
+      </navigator>
+      <navigator url="../draw/draw" class="m-cell m-cell-access">
+        <view class="m-cell-hd" style="color:#db384c;">
+          <image src="../../img/tihuo.png" style="width:40rpx;height:40rpx"></image>
+        </view>
+        <view class="m-cell-bd m-cell-primary">
+          <p>提货核销</p>
+        </view>
+        <text class="m-cell-ft"></text>
+      </navigator>
+         <navigator url="../coupon/coupon" class="m-cell m-cell-access">
+        <view class="m-cell-hd" style="color:#db384c;">
+          <image src="../../img/hexiao.png" style="width:15px;height:15px;"></image>
+        </view>
+        <view class="m-cell-bd m-cell-primary">
+          <p>优惠券核销</p>
+        </view>
+        <text class="m-cell-ft"></text>
+      </navigator>
+    </view>
+  </view>
+  <view style="margin-top:88rpx" bindtap="goBack" class="u-btn u-btn-default">退出登录</view>
+  <view class="m-tips" wx:if="{{!IsChannel}}" style="margin-top:100rpx;">
+    <view class="m-tips-logo">
+      <image mode="aspectFit" src="../../img/kukeduo100.png"></image>
+    </view>
+    <view class="m-tips-str">酷客多提供技术支持 v1.3.5</view>
+  </view>
+</view>

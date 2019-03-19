@@ -1,0 +1,64 @@
+/* pages/nextregi/nextregi.wxss */
+.view1{  
+  padding-left: 20rpx;
+  display: flex;
+  border-bottom: 1rpx solid #d4d4d4;
+  width: 92%;
+  margin: 21rpx auto 10rpx auto;
+  height: 90rpx;
+  align-items: center;
+} 
+.view3{
+  /* display: inline-block;   */
+  width: 150rpx;
+  /* position: relative;  
+  bottom: 10rpx  ; */
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #010101;
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+
+}
+.inputnext{  
+  height: 30rpx;
+  padding-left: 40rpx;
+  border-radius: 15rpx;
+  font-size: 24rpx;
+  width: 426rpx;
+  color: #888;
+
+
+}
+.width_nex{
+ width:100%;
+display:flex;
+margin:0 auto;
+
+}
+.view5{
+  width:161rpx;
+font-family:PingFangSC-Regular;
+font-size:28rpx;
+color:#010101;
+flex:1;
+
+}
+.but_nex{
+  width:80%;
+height:80rpx;
+font-size:30rpx;
+line-height:80rpx;
+background:#2275e7;
+color: #F0FFFF;
+margin:50rpx auto 0 auto;
+
+}
+.leimu{
+flex: 2;
+font-size: 26rpx;
+color: #303030;
+
+
+}

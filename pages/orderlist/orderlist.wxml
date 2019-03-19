@@ -1,0 +1,238 @@
+<view class="m-product-all">
+  <view class="m-tab">
+    <view class="m-navbar">
+      <view class="m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" bindtap="waitdelivery">
+        待处理
+      </view>
+      <view class="m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" bindtap="toBePaid">
+        待支付
+      </view>
+      <view class="m-navbar-item {{tapindex==4?'m-navbar-item-on':''}}" bindtap="orderover">
+        已完成
+      </view>
+      <view class="m-navbar-item {{tapindex==3?'m-navbar-item-on':''}}" bindtap="allOrders">
+        全部状态
+      </view>
+    </view>
+    <view class='select' bindtap='choose'>
+      <view class='select-img' style='margin:20rpx 0'>
+        <image src='{{show?"../../img/down_arrow.png":"../../img/up_arrow.png"}}'></image>
+      </view>
+    </view>
+  </view>
+  <scroll-view wx:if="{{orderlist.length>0}}" scroll-y="true" class="m-orderlist" bindscrolltolower="scrollbottom" wx:if="{{isdata}}">
+    <navigator url="../search/search?type=2" class="u-search-box">
+      <view class="u-search-cont">
+        <icon type="search" size="14"></icon>
+        <text>搜索订单编号、收货人姓名或手机号</text>
+      </view>
+    </navigator>
+    <view wx:for="{{orderlist}}" wx:for-item="items" class="m-panel m-panel-access" style="{{index == 0?'margin-top:0':''}}">
+
+      <view class="m-cells m-panel-hd1">
+        <label>订单编号：{{items.OrderNum}}</label>
+        <label class='ordernum'>{{items.StrOrderStatus}}
+          <text class='m-cell-ft' bindtap='checkdetail' data-num="{{items.OrderNum}}" data-index="{{index}}" data-type="{{items.Type}}">详情</text>
+        </label>
+      </view>
+      <view class="m-product-list">
+        <view wx:for="{{items.OrderdetailList}}"  bindtap='checkdetail' data-num="{{items.OrderNum}}" data-index="{{index}}" data-type="{{items.Type}}" wx:for-item="item" class="m-product-item">
+          <view class="m-product-img">
+            <image src="{{item.Path}}" mode="aspectFill" />
+          </view>
+          <view class="m-product-info">
+            <view class="m-product-name">
+              <view class='product-name'>
+                <label>{{item.ProductName}}</label>
+                <label class="m-min-name">{{item.SpecStr==null?"":item.SpecStr}}</label>
+              </view>
+              <view class='product-price' wx:if="{{items.OrderType == 16}}">
+                <label>{{item.ProductPoint}}积分</label>
+                <label style='color:#999'>x{{item.Amount}}</label>
+              </view>
+              <view class='product-price' wx:else>
+                <label>￥{{item.FactPrice}}</label>
+                <label style='color:#999'>x{{item.Amount}}</label>
+              </view>
+            </view>
+
+            <view class="m-product-price">
+              <image wx:if="{{items.OrderType==1}}" src='../../img/ping.png' mode='aspectFit'></image>
+              <image wx:if="{{items.OrderType==2}}" src='../../img/lucky.png' mode='aspectFit'></image>
+              <image wx:if="{{items.OrderType==10}}" src='../../img/cut.png' mode='aspectFit'></image>
+              <image wx:if="{{items.OrderIconType==1}}" src='../../img/ziti.png' mode='aspectFit'></image>
+              <image wx:if="{{items.OrderIconType==2}}" src='../../img/shop.png' checkdetailmode='aspectFit'></image>
+              <image wx:if="{{items.OrderIconType==3}}" src='../../img/home.png' mode='aspectFit'></image>
+              <!-- <image wx:if="{{items.OrderIconType==4}}" src='../../img/food.png' mode='aspectFit'></image> -->
+            </view>
+          </view>
+        </view>
+        <view  bindtap='checkdetail' data-num="{{items.OrderNum}}" data-index="{{index}}" data-type="{{items.Type}}" class="m-product-item" wx:if="{{items.Type!=0&&items.Type!=1}}">
+          <view class="m-product-img">
+            <image src="{{shoplogo}}" mode="aspectFill" />
+          </view>
+          <view class="m-product-info">
+            <view class="m-product-name">
+              <view class='product-name'>
+                <label>{{shopname}}</label>
+              </view>
+            </view>
+            <view class="m-product-price">
+              <image wx:if="{{items.OrderIconType==4}}" src='../../img/food.png' mode='aspectFit'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="m-cells m-total-info" wx:if="{{items.Type!=1}}">
+        <view wx:if="{{items.PayMethodCodeStr=='线上支付'}}">
+          <text wx:if="{{items.PayStatusStr=='未支付'}}" style="color:red">{{items.PayMethodCodeStr}}({{items.PayStatusStr}}) </text>
+          <text wx:else>{{items.PayMethodCodeStr}}({{items.PayStatusStr}})</text>
+        </view>
+        <view wx:else>{{items.PayMethodCodeStr}}({{items.PayStatusStr}})</view>
+        <view wx:if="{{items.OrderType == 16}}">合计:
+          <label class="m-total-price">{{items.ProductPoint}}积分</label>
+          <text wx:if="{{items.Freight!=0}}">(含运费￥{{items.Freight}})</text>
+        </view>
+        <view wx:else>合计:
+          <label class="m-total-price">￥{{items.RealTotal}}</label>
+          <text wx:if="{{items.Freight!=0}}">(含运费￥{{items.Freight}})</text>
+        </view>
+      </view>
+      <view class="m-cells m-total-info" wx:if="{{items.Type==1}}">
+        <view wx:if="{{items.PayMethodCodeStr=='线上支付'}}">
+          <text wx:if="{{items.PayStatusStr=='未支付'}}" style="color:red">{{items.PayMethodCodeStr}}({{items.PayStatusStr}}) </text>
+          <text wx:else>{{items.PayMethodCodeStr}}({{items.PayStatusStr}})</text>
+        </view>
+        <view wx:else style='color:red'>{{items.PayMethodCodeStr}}</view>
+        <view wx:if="{{items.OrderType == 16}}">合计:
+          <label class="m-total-price">{{items.ProductPoint}}积分</label>
+          <text wx:if="{{items.Freight!=0}}">(含运费￥{{items.Freight}})</text>
+        </view>
+        <view wx:else>合计:
+          <label class="m-total-price">￥{{items.RealTotal}}</label>
+          <text wx:if="{{items.Freight!=0}}">(含运费￥{{items.Freight}})</text>
+        </view>
+      </view>
+      <view class="m-total-btn">
+        <!-- 服务订单取消按钮  -->
+        <view bindtap="cancel" data-num="{{items.OrderNum}}" class="u-link-btn" wx:if="{{items.IsCancelOrderButton==1&&flags==true}}" data-reasonlist="{{items.serviceOrderCancelReasonList}}">取消订单</view>
+        <!-- <view bindtap="printReceipt" data-num="{{items.OrderNum}}" class="u-link-btn" wx:if="{{items.CanPrintReceipt || items.IsCancelOrderButton==1}}">打印小票</view> -->
+        <view bindtap="sendout" data-num="{{items.OrderNum}}" data-index="{{index}}" class="u-link-btn" wx:if="{{(tapindex == 1&&items.Type==0&&items.IsPrintReceiptButton!=1) || (items.StrOrderStatus == '待发货'&&items.Type==0&&items.IsPrintReceiptButton!=1)}}">发货</view>
+        <!-- 服务订单派单按钮 -->
+        <view bindtap="paidan" data-num="{{items.OrderNum}}" class="u-link-btn" wx:if="{{items.IsReceiptButton==1}}">派单</view>
+        <!-- 服务订单核销按钮 到店自提-->
+        <view bindtap="hexiao" data-num="{{items.Type==0?items.ShipCode:items.ReservationCode}}" data-type="{{items.Type}}" class="u-link-btn" wx:if="{{items.IsPrintReceiptButton==1}}">核销</view>
+      </view>
+
+
+
+    </view>
+
+
+    <view class="m-loading-box">
+      <block wx:if="{{ispage}}">
+        <view class="u-loadmore">
+          <lael class="u-loading"></lael>
+          <text class="u-loadmore-tips">正在加载</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="u-loadmore u-loadmore-line">
+          <text class="u-loadmore-tips">没有更多数据啦！</text>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="m-nullcontent" wx:else>
+    <view class="m-nullpage-middle">
+      <label class="iconfont icon-meiyougengduo"></label>
+      <view class="m-null-tip">
+        <text>亲~什么都没有</text>
+        <text>没有订单哦~~</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='msk' wx:if='{{!show}}' bindtap='close'>
+  <view class='msk-wrap'>
+    <view class='{{firstType==-1?"msk-item1":"msk-item"}}' catchtap='all'>查看全部类型</view>
+    <view class='{{firstType==0?"msk-item1":"msk-item"}}' catchtap='shiwu'>只看实物订单</view>
+    <view class='{{firstType==1?"msk-item1":"msk-item"}}' catchtap='fuwu'>只看服务订单</view>
+    <view class='{{firstType==2?"msk-item1":"msk-item"}}' catchtap='youhui'>只看优惠买单</view>
+    <view class='{{firstType==3?"msk-item1":"msk-item"}}' catchtap='saoma' wx:if='{{saoma}}'>只看扫码订单</view>
+  </view>
+</view>
+<view class='msk1' bindtap='close1' wx:if="{{paidan}}">
+  <view class='model' catchtap='innerout'>
+    <view class='title'>
+      <text>派单</text>
+      <image src='../../img/close.png' bindtap='close1'></image>
+    </view>
+    <view class='content'>
+      <view class='content-center'>
+        <text>接单人</text>
+        <input placeholder='请输入接单人姓名' bindinput='writename' maxlength='20'></input>
+      </view>
+      <view class='content-center'>
+        <text>手机号</text>
+        <input placeholder='请输入接单人手机号' bindinput='writephone' type='number' maxlength='11'></input>
+      </view>
+    </view>
+
+    <view class='operation'>
+      <view class='cancel' bindtap='close1'>取消</view>
+      <view class='success' bindtap='success'>确定</view>
+    </view>
+  </view>
+</view>
+
+<!-- 模态框 -->
+
+<!-- <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>    -->
+
+<!--content-->
+
+<!--使用animation属性指定需要执行的动画-->
+
+<!-- <view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">   
+ 
+  <view class="drawer_title">选择打印机</view>   
+ <view>
+ <input type="text" placeholder="请输入搜索的单号" class='input' bindtap="showbox"/>
+ </view>
+  <view class="drawer_content">   
+  <button class="btn_qu" data-statu="close" data-statu="close">取消</button>
+  <button class="btn_que" data-statu="close">确定</button>
+  
+  </view>   
+</view>   
+  
+<view wx:if="{{isShow}}" class="m-select-box-msk" bindtap="closead">
+    <view class="m-select-box" catchtap="notap">
+		<view class="m-close-panel"><label catchtap="closead">关闭</label></view>
+		<view class="m-select-content">
+			<picker-view indicator-style="height:50px" class="u-select" value="{{value}}" bindchange="bindChange">
+				<picker-view-column>
+					<view class="m-cell-bd"><label>haha</label></view>
+          	<view class="m-cell-bd"><label>haha</label></view>
+            	<view class="m-cell-bd"><label>haha</label></view>
+              	<view class="m-cell-bd"><label>haha</label></view>
+				</picker-view-column> -->
+<!-- <picker-view-column>
+					<view class="m-cell-bd" wx:for="{{City.cname}}"><label>{{item}}</label></view>
+				</picker-view-column>
+				<picker-view-column>
+					<view class="m-cell-bd" wx:for="{{District.dname}}"><label>{{item}}</label></view>
+				</picker-view-column> -->
+<!-- </picker-view>
+		</view>
+    </view>
+</view> -->
+ <view class='goindex' bindtap='goindex' wx:if='{{isstore}}'>
+  <image src='../../img/goshop.png'></image>
+</view> 
+<!-- <view class="u-tap-btn" wx:if='{{isstore}}' bindtap='goindex'>
+  <view class="u-go-home">
+    <view class="iconfont icon-shouyeshouye" style="font-size:50rpx;"></view>
+  </view>
+</view> -->

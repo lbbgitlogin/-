@@ -1,0 +1,92 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.1",
+	"appid": "wxaacc1a71e88cc48c",
+	"projectname": "VendorMinApp",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 8,
+			"list": [
+				{
+					"id": 0,
+					"name": "扫码核销",
+					"pathName": "pages/scan/scan",
+					"query": "on=072003828218",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/orderdetail/orderdetail",
+					"query": "on=O83140402810358"
+				},
+				{
+					"id": -1,
+					"name": "优惠券核销",
+					"pathName": "pages/coupon/coupon",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单",
+					"pathName": "pages/foodorderdetail/foodorderdetail",
+					"query": "on=E84310008718730"
+				},
+				{
+					"id": -1,
+					"name": "订单",
+					"pathName": "pages/sendoutgoods/sendoutgoods",
+					"query": "on=O84370431039576"
+				},
+				{
+					"id": -1,
+					"name": "注册页面",
+					"pathName": "pages/registernum/registernum",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "注册成功",
+					"pathName": "pages/suclogin/suclogin",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "选择类目",
+					"pathName": "pages/select/select",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "buchongxinxi",
+					"pathName": "pages/nextregi/nextregi"
+				}
+			]
+		}
+	}
+}

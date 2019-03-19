@@ -1,0 +1,57 @@
+/* pages/select/select.wxss */
+
+.f_category{
+  height: 100rpx;
+  border-bottom: 1rpx solid #d5d5d5;
+  background-color: #fff;
+  color: #000;
+  box-sizing: border-box;
+  padding:0 30rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  justify-content:space-between;
+}
+.s_category_box{
+  padding: 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-bottom: 1rpx solid #d5d5d5;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.s_category_item{
+  font-size: 26rpx;
+  color: #333;
+  padding: 10rpx 15rpx;
+  margin:10rpx 20rpx 10rpx 0;
+  border: 1rpx solid #d5d5d5;
+  border-radius: 4rpx;
+}
+
+.submit{
+  width: 80%;
+  height: 80rpx;
+  margin:  15rpx auto;
+  background-color: #1F90E8;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.checked{
+  background-color: #1F90E8;
+  color: #fff;
+  /* border: none; */
+   border: 1rpx solid #1F90E8;
+}
+.my_coupon{
+  width: 100%;
+  height: 108rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0
+}

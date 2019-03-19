@@ -1,0 +1,35 @@
+ <template name="index_msk">
+ <view class="msk {{!isCancel?'hide':''}}" bindtap="cancel">
+    <view class="msk_box" url="../receivecontent/receivecontent" catchtap="innertouch">
+      <image src="http://kkdfile.soonku.net/appicon/Package.png"></image>
+      <view class="msk_box_info">
+        <label>{{CouponAmount}}</label>
+        <text>元</text>
+      </view>
+      <view class="btn_receivenow" bindtap="receivenow"></view>
+      <view class="btn_cancel" bindtap="cancel">✕</view>
+    </view>
+  </view>
+  </template>
+
+<template name="success_msk">
+  <view class="msk1"  bindtap="cancelsuccess">
+  <view class="m-coupon-box" catchtap="innertouch">
+    <view class="m-coupon-box-top"></view>
+    <view class="m-coupon-box-content"   >  
+      <view class="m-coupon-box-title">
+        优惠券领取成功
+        <view class="m-coupon-box-tip">点击右上角分享给好友</view>
+      </view>
+       <scroll-view scroll-y="true" class="m-coupon-box-list" wx:for="{{Coupons}}">
+        <view class="m-coupon-box-item">
+            <label>{{item.DiscountMoney}}</label>
+            <text>{{item.Name}}</text>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="m-coupon-box-bottom"></view>
+    <view class="u-close-btn" catchtap="cancelsuccess">✕</view>
+  </view>
+</view>
+</template>

@@ -1,0 +1,104 @@
+<view class="m-product-all">
+	<view class="m-tab">
+		<view class="m-navbar">
+			<view class="m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" bindtap="selling">
+				销售中
+			</view>
+			<view class="m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" bindtap="storehouse">
+				仓库中
+			</view>
+			<view class="m-navbar-item {{tapindex==3?'m-navbar-item-on':''}}" bindtap="searchproduct">
+				搜索商品
+			</view>
+		</view>
+	</view>
+	<block  wx:if="{{isdata}}">
+
+	<scroll-view  scroll-y="true" class="m-productlist" bindscrolltolower="scrollbottom" wx:if="{{(tapindex == 1 || tapindex == 2) && productlist.length > 0 }}">
+		<block wx:for="{{productlist}}">
+		<view class="m-product-item" style="border-bottom:1px solid lightgray;" bindtap="productdetail" data-pid="{{item.id}}">
+				<view class="m-product-img">
+					<image src="{{item.ProductPic}}"/>
+				</view>
+				<view class="m-product-box">
+					<view class="m-box-name">{{item.productName}}
+					</view>
+					<view class="m-box-price">
+						<label>￥{{item.SalePrice}}</label>
+					</view>
+					<view class="m-box-stock">
+						<label>库存：{{item.Stock}}</label>
+					</view>
+					<view class="m-box-salenum">
+						<label>销量：{{item.SaleNum}}</label>
+					</view>
+					<view class="wrapper" catchtap="operator" data-index="{{index}}">
+						<!--<view class="m-box-operate">
+							<label>操作</label>
+						</view>-->
+						<view class="u-link-btn">操作</view>
+					</view>
+					
+					<view class="operator-box" wx:if="{{isShowOperator && (index == curIndex)}}">
+						<view class="operator-item" catchtap="deleteproduct" data-pid="{{item.id}}" data-index="{{index}}" >
+							<view class="item-icon">
+                  				<label class="iconfont icon-shanchu "></label>
+                			 </view>
+							 <view class="item-text">删除</view>
+						</view>
+						<view class="operator-item" catchtap="undercarriage" data-pid="{{item.id}}" data-index="{{index}}" wx:if="{{tapindex == 1}}">
+							<view class="item-icon">
+                  				<label class="iconfont icon-xiajia "></label>
+                			 </view>
+							 <view class="item-text">下架</view>
+						</view>
+						<view class="operator-item" catchtap="putonsale" data-pid="{{item.id}}" data-index="{{index}}" data-stock="{{item.Stock}}" wx:if="{{tapindex == 2}}">
+							<view class="item-icon">
+                  				<label class="iconfont icon-shangjia "></label>
+                			 </view>
+							 <view class="item-text">上架</view>
+						</view>
+						
+					</view>
+				</view>
+			</view>
+			</block>
+			
+         <view class="m-loading-box" wx:if="{{productlist.length > 0}}">
+            <block wx:if="{{ispage}}">
+                <view class="u-loadmore">
+                    <lael class="u-loading"></lael>
+                    <text class="u-loadmore-tips">正在加载</text>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="u-loadmore u-loadmore-line" >
+                    <text class="u-loadmore-tips">没有更多数据啦！</text>
+                </view>
+            </block>
+        </view>
+	</scroll-view>
+
+	<view class="m-nullcontent" wx:if="{{productlist.length == 0 && (tapindex == 1 || tapindex == 2)}}">
+			<view class="m-nullpage-middle">
+				<label class="iconfont icon-meiyougengduo"></label>
+				<view class="m-null-tip">
+				<text>亲~什么都没有</text>
+				<text>没有商品哦~~</text>
+				</view>
+			</view> 
+	</view>
+
+	</block>
+
+	
+	<navigator  url="../search/search" class="u-search-box" wx:if="{{tapindex == 3}}">
+		<view class="u-search-cont">
+			<icon type="search" size="14"></icon> <text>搜索商品</text>
+		</view>
+	</navigator>
+		
+   
+</view>	
+
+

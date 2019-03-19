@@ -1,0 +1,85 @@
+@import '../orderdetail/orderdetail.wxss';
+.m-container{position: relative;}
+.m-title{height: 90rpx;line-height: 90rpx;background: #EFEFEF;padding-left: 40rpx;font-size: 34rpx;}
+.m-input-box{background: white;height: 80rpx;position: relative;line-height: 80rpx;padding-left: 40rpx;padding-right: 190rpx;}
+.u-input{height: 80rpx;line-height: 80rpx;}
+.u-input-clear{position: absolute;right: 105rpx;top:0;height: 80rpx;width: 80rpx;line-height: 80rpx;text-align: center;}
+.m-scan{position: absolute;right:20rpx;top:0;width:80rpx;height: 80rpx;text-align: center;line-height: 80rpx;}
+.m-scroll-box{height: 640rpx;background:white;}
+.scroll-item{height: 80rpx;line-height: 80rpx;border-bottom: 1px solid #EFEFEF;box-sizing: border-box;margin: 0 40rpx 0 30rpx;font-size: 30rpx;padding-left: 10rpx;position: relative;}
+.item-check{position:absolute;right:80rpx;width:40rpx;height:40rpx;top:20rpx;}
+.wxSortPickerViewTemTags{position: absolute;right: 0;top: 88rpx;width: 40rpx;z-index: 10;background: white;padding: 7rpx 0;text-align: center;}
+.wxSortPickerViewTemTag{font-size: 24rpx;line-height: 24rpx;}
+.letter-selected{width: 100rpx;height: 120rpx;background-color: rgba(0,0,0,.5);color: white;font-size: 60rpx;position: absolute;left: 325rpx;bottom: -370rpx;z-index: 10;line-height: 120rpx;text-align: center;border-radius: 8rpx;}
+.btn{
+  width:200rpx;height:60rpx;background:#db384c;color:#fff;text-align:center;font-size:28rpx;line-height:60rpx;margin-left:70%;border-radius: 8rpx
+}
+
+
+
+
+.m-cells{font-size: 28rpx;}
+.m-cells-wrap{margin-top: 40rpx}
+.m-order-typetxt{color:#DB384C;}
+.m-addres-info {padding: 32rpx 0;background-color: white;overflow: hidden;position: relative;margin-top: 20rpx;}
+ .m-ad-name{position: relative;padding: 0 10rpx;-webkit-box-flex: 1;
+height: 20px;line-height: 20px;font-weight: 400;font-size: 14px;} 
+.m-ad-name text{margin: 0 20rpx;}
+/* .m-ad-name::after{content: "\e7e0";position: absolute;left: -25rpx;width: 30rpx;height: 30rpx;font-family:"iconfont" !important;text-align: center;line-height: 35rpx;font-size: 60rpx;
+background-size: cover;top: 50%;margin-top: -14rpx;} */
+.m-ad-address{width: 650rpx;margin-left: 20rpx;display: -webkit-box;
+-webkit-box-flex: 1;line-height: 40rpx;font-weight: 400;
+font-size: 14px;position: relative;padding-left: 40rpx;
+overflow:hidden;text-overflow:ellipsis;display:-webkit-box;
+-webkit-box-orient:vertical;-webkit-line-clamp:2;color: #888;}
+.m-product-all{margin-top: 20rpx;}
+.total-info{margin-top: 20rpx;}
+.m-panel-hd::after{border: none;}
+.m-total-time{color: #888;}
+.m-footer-btn{width: 100%;position:fixed;bottom: 0;left: 0;background-color: #fff;text-align: right;border-top: 1rpx solid #d5d5d5;box-sizing: border-box;padding: 20rpx;}
+.u-link-btn{margin: 0 10rpx;vertical-align: middle;display: inline-block;line-height: 40rpx;}
+.m-product-price text{font-size: 28rpx;color: #888;background-color: #fff;}
+.massage{
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    
+    border-bottom: 2rpx solid #d9d9d9;
+    background:#ffffff;
+    font-size: 28rpx;
+    color:#000;
+}
+.massage1{
+    width: 100%;
+    height: 100rpx;
+    border-bottom: 2rpx solid #d9d9d9;
+    background:#ffffff;
+    font-size: 28rpx;
+    color:#000;
+    line-height: 100rpx;
+}
+.massage1 text,.massage text{
+    margin-left:40rpx; 
+}
+.massage-name{
+    margin-left: 40rpx;
+}
+.massage-tel{
+    margin-left:40rpx; 
+}
+.code1{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    align-content: space-between;
+}
+.code image{
+    width: 50%;
+}
+.code text{
+    font-size: 24rpx;
+    color: #717171;
+
+}
+

@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/store/store",
+    "pages/index/index",
+    "pages/search/search",
+    "pages/productdetail/productdetail",
+    "pages/productlist/productlist",
+    "pages/commodity/commodity",
+    "pages/orderlist/orderlist",
+    "pages/orderdetail/orderdetail",
+    "pages/modifyphone/modifyphone",
+    "pages/modifypassword/modifypassword",
+    "pages/storerenewal/storerenewal",
+    "pages/sendoutgoods/sendoutgoods",
+    "pages/findpassword/findpassword",
+    "pages/scan/scan",
+    "pages/suclogin/suclogin",
+    "pages/select/select",
+    "pages/favorableorderdetail/favorableorderdetail",
+    "pages/draw/draw",
+    "pages/coupon/coupon",
+    "pages/registernum/registernum",
+     "pages/agreement/agreement",
+     "pages/nextregi/nextregi",
+    "pages/ordercancel/ordercancel",
+    "pages/serveorderdetail/serveorderdetail",
+    "pages/countorderdetail/countorderdetail",
+    "pages/foodorderdetail/foodorderdetail",
+    "pages/logisticsprogress/logisticsprogress",
+    "pages/storeindex/storeindex",
+    "pages/gatheringCode/gatheringCode"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1E91E7",
+    "navigationBarTitleText": "",
+    "backgroundColor": "#f8f8f8",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#1E91E7",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "img/home_x200.png",
+        "selectedIconPath": "img/home_select_x200.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/orderlist/orderlist",
+        "iconPath": "img/orderx200.png",
+        "selectedIconPath": "img/order-select_x200.png",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/commodity/commodity",
+        "iconPath": "img/commodity_x200.png",
+        "selectedIconPath": "img/commodity_select_x200.png",
+        "text": "商品"
+      },
+      {
+        "pagePath": "pages/store/store",
+        "iconPath": "img/store_x200.png",
+        "selectedIconPath": "img/store_select_x200.png",
+        "text": "店铺"
+      }
+    ]
+  }
+}

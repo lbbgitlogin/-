@@ -1,0 +1,20 @@
+<!--pages/nextregi/nextregi.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+<view class='view1'>
+  <view class='view3'>公司名称</view>
+  <input class='inputnext' maxlength='20' type='text' bindinput='businessName' placeholder="请输入公司名称" name="businessName"></input>
+</view>
+<view class='view1'>
+  <view class='view3'>姓名</view>
+  <input class='inputnext' maxlength='20' type='text' bindinput='personName' placeholder="请输入您的真实姓名" name="personName"></input>
+</view>
+<view bindtap='select' class='view1 m-cell-access'>
+  <view class='width_nex'>
+    <view class='view5'>经营类目</view>   
+    <!-- <input class='inputnext' type='text' placeholder="请输入您的真实姓名" name="contactperson"></input> -->
+    <view wx:if="{{fidname}}" class='leimu' style="flex: 2;">{{fidname}} > {{sidname}}</view>
+    <text class="m-cell-ft"></text>
+  </view>
+</view>
+<button class='but_nex' formType="submit">注册</button>
+</form>

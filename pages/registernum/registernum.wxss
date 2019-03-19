@@ -1,0 +1,238 @@
+/* pages/registernum/registernum.wxss */
+
+page {
+  font-size: 32rpx;
+  background: #fff;
+}
+
+.button-hover {
+  width: 400rpx;
+  height: 80rpx;
+  font-size: 36rpx;
+  line-height: 80rpx;
+  background: #2275e7;
+  color: white;
+  margin: 50rpx auto 0 auto;
+}
+
+.headimage {
+  margin: 0 auto;
+  height: 150rpx;
+  width: 150rpx;
+  display: block;
+  margin-bottom: 50rpx;
+  border-radius: 50%;
+  background: red;
+}
+
+.top {
+  border-radius: 15rpx;
+  background: #f7b45d;
+  height: 200rpx;
+  margin: 15rpx;
+  color: white;
+  padding: 20rpx;
+}
+
+.form {
+  margin-bottom: 3rpx;
+  height: 100%;
+  padding: 20rpx 0 0 0;
+  background-size: cover;
+  width: 100%;
+}
+
+.logo_wx {
+  width:100%;
+height:163rpx;
+  margin: 67rpx auto 60rpx auto;
+}
+
+.view2 {
+  padding-left: 65rpx;
+  position: relative;
+  width: 80%;
+  margin: 21rpx auto 10rpx auto;
+  line-height: 67rpx;
+}
+
+.wx_logo {
+width:509rpx;
+height:163rpx;
+  margin: 0 auto;
+  display: block;
+}
+
+.form .view {
+  /* display: inline-block;   */
+  width: 150rpx;
+  /* position: relative;  
+  bottom: 10rpx  ; */
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #010101;
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+}
+
+.view1 {
+  padding-left: 20rpx;
+  display: flex;
+  border-bottom: 1rpx solid #E0E0E0;
+  width: 92%;
+  margin:0 auto;
+  height: 99rpx;
+  align-items: center;
+}
+
+.ts_s {
+  height: 60rpx;
+}
+
+.ts_s1 {
+  top: 10rpx;
+}
+
+.se_s {
+  font-size: 26rpx;
+  margin-right: 17rpx;
+}
+
+.hint {
+  position: relative;
+  left: 40rpx;
+  top: -35rpx;
+  background: white;
+  width: 230rpx;
+}
+
+.radio-group {
+  position: absolute;
+  top: 5rpx;
+  right: 340rpx;
+}
+
+input {
+  height: 30rpx;
+  padding-left: 40rpx;
+  border-radius: 15rpx;
+  font-size: 24rpx;
+  width: 426rpx;
+  color: #888;
+}
+
+.img {
+  height: 150rpx;
+  display: block;
+  margin-left: 170rpx;
+  width: 167rpx;
+  border: 1px solid #ccc;
+  /* box-shadow: 10rpx 10rpx 5rpx rgba(115, 116, 133, .3); */
+}
+
+.xin {
+  position: absolute;
+  top: -1rpx;
+  left: 21rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.xtb {
+  width: 100%;
+  height: 100%;
+}
+
+.zhu {
+  color: red;
+  font-size: 24rpx;
+  margin-left: 63rpx;
+}
+
+.container {
+  font-size: 16px;
+}
+
+.section {
+  display: flex;
+  margin: 16rpx;
+  padding: 16rpx;
+  border-bottom: 1rpx solid #cfd8dc;
+}
+
+text {
+  width: 200rpx;
+}
+
+button {
+  margin: 16rpx;
+}
+
+.sendMsg {
+  margin-right: 0;
+  padding: 0;
+  height: 49rpx;
+
+  line-height: 49rpx;
+  z-index: 99;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #1f90e8;
+  letter-spacing: 2.8px;
+  text-align: center;
+  flex:1
+}
+
+.re_fuhao {
+
+  color: #c2c2c2;
+}
+
+.xiahuaxian {
+  width: 100%;
+  height: 3px;
+  background: #f7b45d;
+  margin-top: 100rpx;
+}
+
+.buttonnext {
+  width: 80%;
+  height: 80rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  background: #1f90e8;
+  color: #f0ffff;
+  text-align: center;
+  letter-spacing: 3px;
+  margin: 50rpx auto 50rpx auto;
+  /* box-shadow:-2px -2px 0 rgba(115, 116, 133, .4),2px 2px 0 rgba(115, 116, 133, .4), 10rpx 10rpx 5rpx rgba(115, 116, 133, .4); */
+}
+
+.view2 {
+  width: 60%;
+  display: flex;
+  padding-left: 0;
+  position: relative;
+  margin: 21rpx auto 10rpx auto;
+}
+
+.pic_re {
+  width: 30rpx;
+  height: 30rpx;
+  /* position:absolute;
+top:4%;
+left:-6%; */
+}
+
+.re_tex1 {
+  color: #010101;
+  font-size: 24rpx;
+  margin-left: 17rpx;
+}
+
+.re_tex2 {
+  color: #419fe5;
+  font-size: 22rpx;
+}

@@ -1,0 +1,102 @@
+<view class="m-product-all" >
+		<view class="m-tab" >
+		<view class="m-navbar">
+			<view class="m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" bindtap="sealnum">
+				销量
+			</view>
+			<view class="m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" bindtap="newpd">
+				新品
+			</view>
+			<view class="m-navbar-item {{tapindex==3?'m-navbar-item-on':''}} " bindtap="pdprice">
+				<label class="m-sort"> 价格 <image src="../../img/{{priceOrder?'sort-desc':'sort-asc'}}.png" /></label>
+			</view>
+		</view>
+	</view>
+
+	<block wx:if="{{isdata}}">
+
+	<scroll-view  scroll-y="true" class="m-productlist" bindscrolltolower="scrollbottom" wx:if="{{productlist.length>0}}">
+		<block wx:for="{{productlist}}">
+		<view class="m-product-item" style="border-bottom:1px solid lightgray;" bindtap="productdetail" data-pid="{{item.id}}">
+				<view class="m-product-img">
+					<image src="{{item.ProductPic}}"/>
+				</view>
+				<view class="m-product-box">
+					<view class="m-box-name"><label style="color:red;" wx:if="{{item.Status == 'offline'}}">[已下架]</label>{{item.productName}}
+					</view>
+					<view class="m-box-price">
+						<label>￥{{item.SalePrice}}</label>
+					</view>
+					<view class="m-box-stock">
+						<label>库存：{{item.Stock}}</label>
+					</view>
+					<view class="m-box-salenum">
+						<label>销量：{{item.SaleNum}}</label>
+					</view>
+					<view class="wrapper" catchtap="operator" data-index="{{index}}">
+						<!--<view class="m-box-operate">
+							<label>操作</label>
+						</view>-->
+						<view class="u-link-btn">操作</view>
+					</view>
+
+					<view class="operator-box" wx:if="{{isShowOperator && (index == curIndex)}}">
+						<view class="operator-item" catchtap="deleteproduct" data-pid="{{item.id}}" data-index="{{index}}" >
+							<view class="item-icon">
+                  				<label class="iconfont icon-shanchu "></label>
+                			 </view>
+							 <view class="item-text">删除</view>
+						</view>
+						<view class="operator-item" catchtap="undercarriage" data-pid="{{item.id}}" data-index="{{index}}" wx:if="{{item.Status == 'online'}}">
+							<view class="item-icon">
+                  				<label class="iconfont icon-xiajia "></label>
+                			 </view>
+							 <view class="item-text">下架</view>
+						</view>
+						<view class="operator-item" catchtap="putonsale" data-pid="{{item.id}}" data-index="{{index}}" data-stock="{{item.Stock}}" wx:if="{{item.Status == 'offline'}}">
+							<view class="item-icon">
+                  				<label class="iconfont icon-shangjia "></label>
+                			 </view>
+							 <view class="item-text">上架</view>
+						</view>
+						
+					</view>
+				</view>
+			</view>
+			
+
+			</block>
+			
+         <view class="m-loading-box" wx:if="{{productlist.length > 0}}">
+            <block wx:if="{{ispage}}">
+                <view class="u-loadmore">
+                    <lael class="u-loading"></lael>
+                    <text class="u-loadmore-tips">正在加载</text>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="u-loadmore u-loadmore-line" >
+                    <text class="u-loadmore-tips">没有更多数据啦！</text>
+                </view>
+            </block>
+        </view>
+
+	</scroll-view>
+
+
+		<navigator url="../search/search" redirect="true" class="m-nullpage" wx:else>
+	<view class="m-nullpage-middle">
+		<label class="iconfont icon-meiyougengduo"></label>
+		<view class="m-null-tip">
+			<text>亲~找不到您想要的商品</text>
+			<text>再多点提示呗</text>
+		</view>
+	</view>
+</navigator>
+</block>
+
+		
+   
+</view>	
+
+

@@ -1,0 +1,8 @@
+<view class="m-search-box">
+    <view class="u-input-search">
+        <!--<label class="iconfont icon-sousuo-sousuo"></label>-->
+        <icon type="search" size="14"></icon>
+        <input type="text" bindinput="startinput" focus="true" bindconfirm="search" placeholder="请输入订单编号、收货人姓名或手机号"/>
+        <view class="u-btn" bindtap="search">搜索</view>	
+    </view>
+</view>  

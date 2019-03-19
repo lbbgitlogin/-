@@ -1,0 +1,12 @@
+<view class="home-top-box">
+  <view class="top-img001">
+    <image src="../../img/img001.png" class="move1"></image>
+  </view>
+  <view class="top-img003">
+    <image src="../../img/img002.png" class="move2"></image>
+  </view>
+  <view class='gatheringCode'>
+    <image src='{{Info}}' bindtap='ImgTap'></image>
+    <view class='tishi'>点击长按保存</view>
+  </view>
+</view>

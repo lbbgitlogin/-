@@ -1,0 +1,34 @@
+/* pages/suclogin/suclogin.wxss */
+.suc_text1{
+  width: 100%;
+ font-family: PingFangSC-Medium;
+font-size: 40rpx;
+color: #1E91E7;
+letter-spacing: 0;
+text-align: center;
+margin-top: 144rpx;
+margin-bottom:105rpx;
+
+}
+.suc_text2{
+  width: 100%;
+  font-family: PingFangSC-Regular;
+font-size: 28rpx;
+color: #3C3C3C;
+letter-spacing: 0;
+text-align: center;
+margin-top: 63rpx
+}
+.login_page{
+  width: 54%;
+  background: #1F90E8;
+border-radius: 10px;
+ font-family: PingFangSC-Medium;
+font-size: 30rpx;
+color: #F0FFFF;
+letter-spacing: 3px;
+text-align: center;
+line-height: 80rpx;
+margin: 177rpx auto;
+height: 80rpx
+}

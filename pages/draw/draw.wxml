@@ -1,0 +1,325 @@
+<view class="m-container">
+  <view wx:if="{{logisticsKey!='VENDOR'&&logisticsKey!='CLIENT'&&logisticsKey!='OTHER'}}">
+    <view class="m-title">请输入提货码</view>
+    <view class="m-input-box">
+      <!-- {{deliveryNum}}   -->
+      <input class="u-input" type="number" bindinput="inputdeliverynum" value="{{deliveryNum}}" bindblur="EventHandle" />
+      <view class="u-input-clear" bindtap="clearnum" wx:if="{{isNum}}">✕</view>
+      <view class="m-scan" bindtap="sao">
+        <label class="iconfont icon-importedlayerscopy2" style="font-size:40rpx;"></label>
+      </view>
+    </view>
+  </view>
+  <view class="btn" bindtap="find" style="margin-top:40rpx" wx:if="{{isShow}}">
+    查询订单
+  </view>
+</view>
+<!-- <view wx:for="{{info}}" wx:for-item="items" class="m-panel m-panel-access">
+  <view class="m-cells">
+    <view class="m-cell ">
+      <view class="m-cell-bd">
+        <text>订单编号:{{items.OrderNum}}</text>
+      </view>
+      <view class="m-cell-ft m-order-typetxt">{{items.OrderStatus}}</view>
+    </view>
+  </view>
+  <view class="massage" style="align-items: center;justify-content: space-between">
+    <view class="massage-name">
+      {{items.Consignee}}
+    </view>
+    <view class="massage-tel" style="margin-right:40rpx">
+      {{items.Tel}}
+    </view>
+  </view>
+
+  <view class="m-product-all">
+    <view class="m-product-list">
+      <view wx:for="{{items.OrderDetailVOList}}" wx:for-item="item" class="m-product-item">
+        <view class="m-product-img">
+          <image src="{{item.Path}}" mode="aspectFill" />
+        </view>
+        <view class="m-product-info">
+          <view class="m-product-name">
+            <label>{{item.ProductName}}</label>
+            <label class="m-min-name">{{item.SpecStr==null?"":item.SpecStr}}</label>
+          </view>
+          <view class="m-product-price">
+            <label>￥</label>{{item.FactPrice}}
+            <text>x{{item.Amount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{items.Remark}}">
+    <view class="m-cells-title">备注</view>
+    <view class="m-cells m-cells-form">
+      <view class="m-cell">
+        <view class="m-cell-bd">
+          {{items.Remark}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="m-cells total-info">
+    <view class="m-cell1" style="padding:20rpx 20rpx;">
+      <view class="m-cell-bd">
+        <text>提货时间</text>
+      </view>
+      <view class="m-cell-ft m-order-typetxt" style="color:#000">{{items.ReservationDateText}}</view>
+    </view>
+    <view class="m-cell1" style="padding:20rpx 20rpx;display:flex;flex-flow: column;justify-content: space-between;align-items: stretch">
+      <view class="m-cell-bd">
+        <text>提货门店</text>
+      </view>
+      <view class="m-cell-ft m-order-typetxt" style="color:#717171;text-align:left;margin-top:20rpx">{{items.ReservationStoreName||""}}</view>
+    </view>
+    <view class="m-cell1" style="display:flex;flex-flow: column;justify-content: space-between;align-items: stretch">
+      <view class="m-cell1" style="padding:20rpx 10rpx;">
+        <view class="m-cell-bd">
+          <text>商品总额</text>
+        </view>
+        <view class="m-cell-ft m-order-typetxt">￥{{items.ProTotalMoney}}</view>
+      </view>
+      <view class="m-cell1" style="padding:20rpx 10rpx;">
+        <view class="m-cell-bd">
+          <text>优惠券</text>
+        </view>
+        <view class="m-cell-ft m-order-typetxt">-￥{{items.CouponDiscount}}</view>
+      </view>
+      <view class="m-cell1" style="padding:20rpx 10rpx;">
+        <view class="m-cell-bd">
+          <text>会员折扣</text>
+        </view>
+        <view class="m-cell-ft m-order-typetxt">-￥{{items.LevelDiscount}}</view>
+      </view>
+      <view class="m-cell1" style="padding:20rpx 10rpx;">
+        <view class="m-cell-bd">
+          <text>积分抵现</text>
+        </view>
+        <view class="m-cell-ft m-order-typetxt">-￥{{items.PointAsCash}}</view>
+      </view>
+      <view class="m-cell1 ">
+        <view class="m-cell-bd">
+        </view>
+        <view class="m-cell-ft m-total-info">
+          实付款：
+          <label class="m-total-price">￥{{items.RealTotal}}</label>
+          <view class="m-total-time" style="margin-top:20rpx">下单时间：{{items.CreateTime}}</view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{items.Confirmreceipt}}" style="background:#f8f8f8;padding:20rpx">
+      <view class="btn" bindtap="hexiao">
+        确认核销
+      </view>
+    </view>
+  </view>
+
+</view> -->
+<block wx:if="{{isorderInfo}}">
+<view class="m-cells m-cells-wrap"> 
+  <view class='m-cells-left'>
+    <view class='m-cells-ordernum'>订单编号：{{OrderInfo.OrderNum}}</view>
+    <view class='m-cells-time'>下单时间：{{OrderInfo.CreateTime}}</view>
+  </view>
+  <view class='m-cells-right'>{{OrderInfo.OrderStatus}}</view>
+</view>
+<!-- 普通快递 -->
+<block wx:if="{{ OrderInfo.ShipMethod==0}}">
+  <view class='logistics-wrap' wx:if='{{OrderInfo.SendOrderType==1}}'>
+    <view class='logistics logistics-company'>
+      <label>物流公司</label>
+      <label>{{OrderInfo.LogisticName}}</label>
+    </view>
+    <view class='logistics logistics-num'>
+      <label>物流单号</label>
+      <label>{{OrderInfo.LogisticCode}}</label>
+    </view>
+    <view class='logistics logistics-message' bindtap='look'>
+      <label>物流信息</label>
+      <label class='m-cell-ft' style='margin-right:20rpx'>点击查看</label>
+    </view>
+  </view>
+  <!-- 其他配送 -->
+  <view class='logistics-wrap' wx:if='{{OrderInfo.SendOrderType==2}}'>
+    <view class='logistics logistics-company'>
+      <label>物流公司</label>
+      <label>{{OrderInfo.LogisticName}}</label>
+    </view>
+    <view class='logistics logistics-num'>
+      <label>送货人</label>
+      <label>{{OrderInfo.otherOrderUser}}</label>
+    </view>
+    <view class='logistics logistics-message'>
+      <label>手机号</label>
+      <label>{{OrderInfo.otherOrderPhone}}</label>
+    </view>
+  </view>
+</block>
+<!-- 达达配送 同城配送-->
+<block wx:if="{{OrderInfo.DistributionType==2&&OrderInfo.ShipMethod!=1}}">
+  <view class='logistics-wrap' wx:if="{{OrderInfo.OrderStatusId!=1||OrderInfo.SecondType!=10    }}">
+    <view class='logistics logistics-time' wx:if='{{OrderInfo.EstimatedArriveTimeEnabled&&OrderInfo.OrderStatus!="已完成"}}'>
+      <label>预计时间</label>
+      <label>预计
+        <text style='color:#379ae6'>{{OrderInfo.EstimatedArriveTime}}</text>分送达</label>
+    </view>
+    <view class='logistics logistics-time' wx:if='{{OrderInfo.FinishTime}}'>
+      <label>到达时间</label>
+      <label>
+        <text style='color:#379ae6'>{{OrderInfo.FinishTimeStr}}</text>
+      </label>
+    </view>
+    <view class='logistics logistics-mendian' wx:if='{{OrderInfo.SendOrderType==0}}'>
+      <view style='width:169rpx'>下单门店</view>
+      <view style='max-width:80%'>{{OrderInfo.SendOrderStore}}</view>
+    </view>
+    <view class='logistics logistics-mendian' wx:if='{{OrderInfo.SendOrderType==3||OrderInfo.SendOrderType==4}}'>
+      <label wx:if="{{OrderInfo.SendOrderStore!=''&&OrderInfo.SendOrderStore!=null}}">配送门店</label>
+      <label wx:if="{{OrderInfo.SendOrderStore!=''&&OrderInfo.SendOrderStore!=null}}">{{OrderInfo.SendOrderStore}}</label>
+    </view>
+    <view class='logistics logistics-shpeople' wx:if='{{OrderInfo.SendOrderType==4||OrderInfo.SendOrderType==3}}'>
+      <label wx:if='{{OrderInfo.TransporterName.length!=0}}'>送货人</label>
+      <label wx:if='{{OrderInfo.TransporterName.length!=0}}'>{{OrderInfo.TransporterName}}</label>
+    </view>
+    <view class='logistics logistics-num' wx:if='{{OrderInfo.SendOrderType==3||OrderInfo.SendOrderType==4}}'>
+      <label wx:if="{{OrderInfo.TransporterPhone!=''&&OrderInfo.TransporterPhone!=null}}">手机号</label>
+      <label wx:if="{{OrderInfo.TransporterPhone!=''&&OrderInfo.TransporterPhone!=null}}">{{OrderInfo.TransporterPhone}}</label>
+    </view>
+    <view class='logistics logistics-message' wx:if='{{OrderInfo.SendOrderType==3||OrderInfo.SendOrderType==4}}' bindtap='look'>
+      <label>配送进度</label>
+      <label class='m-cell-ft' style='margin-right:20rpx'>点击查看</label>
+    </view>
+  </view>
+</block>
+<!-- 到店自提 -->
+<view class='logistics-wrap' wx:if='{{OrderInfo.ShipMethod==1}}'>
+  <view class='logistics logistics-company'>
+    <label>提货时间</label>
+    <label>{{OrderInfo.ReservationDateText}}</label>
+  </view>
+  <view class='logistics logistics-num'>
+    <label>提货门店</label>
+    <label style='max-width:80%;'>{{OrderInfo.ReservationStoreName}}</label>
+  </view>
+  <view class='logistics logistics-message'>
+    <label>提货码</label>
+    <label>{{OrderInfo.ShipCode}}</label>
+  </view>
+</view>
+<view class="m-addres-info" wx:if='{{OrderInfo.ShipMethod!=1}}'>
+  <view class="m-ad-name">
+    <text>收货人：{{OrderInfo.Consignee}}</text>
+    <text>{{OrderInfo.Tel}}</text>
+  </view>
+  <view class="m-ad-address">
+    <image src='../../img/map.png'></image>
+    <text>{{OrderInfo.Address}}</text>
+  </view>
+</view>
+<view class="m-addres-info" wx:if='{{OrderInfo.ShipMethod==1}}'>
+  <view class="m-ad-name">
+    <text>提货人：{{OrderInfo.Consignee}}</text>
+    <text>{{OrderInfo.Tel}}</text>
+  </view>
+</view>
+<view class="m-product-all">
+  <view class="m-product-list">
+    <navigator url="../productdetail/productdetail?pid={{item.ProductId}}" wx:for="{{OrderInfo.OrderDetailVOList}}" wx:for-item="item" class="m-product-item">
+      <view class="m-product-img">
+        <image src="{{item.Path}}" mode="aspectFill" />
+      </view>
+      <view class="m-product-info">
+        <view class="m-product-name">
+          <view class='product-name'>
+            <label>{{item.ProductName}}</label>
+            <label class="m-min-name">{{item.SpecStr==null?"":item.SpecStr}}</label>
+          </view>
+          <view class='product-price'>
+            <label wx:if="{{OrderInfo.SecondType==16}}">{{item.ProductPoint}}积分</label>
+            <label wx:else>￥{{item.FactPrice}}</label>
+            <label style='color:#999'>x{{item.Amount}}</label>
+          </view>
+        </view>
+        <view class="m-product-price">
+          <image wx:if="{{OrderInfo.SecondType==1}}" src='../../img/ping.png' mode='aspectFit'></image>
+          <image wx:if="{{OrderInfo.SecondType==2}}" src='../../img/lucky.png' mode='aspectFit'></image>
+          <image wx:if="{{OrderInfo.SecondType==3}}" src='../../img/cut.png' mode='aspectFit'></image>
+          <image wx:if="{{OrderInfo.OrderIconType==1}}" src='../../img/ziti.png' mode='aspectFit'></image>
+          <image wx:if="{{OrderInfo.OrderIconType==2}}" src='../../img/shop.png' mode='aspectFit'></image>
+          <image wx:if="{{OrderInfo.OrderIconType==3}}" src='../../img/home.png' mode='aspectFit'></image>
+          <image wx:if="{{OrderInfo.OrderIconType==4}}" src='../../img/food.png' mode='aspectFit'></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view class='remark' wx:if='{{OrderInfo.Remark}}'>
+  <view>备注</view>
+  <view class='conter'>
+    {{OrderInfo.Remark}}
+  </view>
+</view>
+<view class="detail">
+  <!-- <view class="m-cell" wx:if="{{OrderInfo.ShipMethod==1}}">
+    <view class="m-cell-bd">
+      <text style="">提货时间</text>
+    </view>
+    <view class="m-cell-ft m-order-typetxt" style="color:#000">{{OrderInfo.ReservationDateText||"" }}</view>
+  </view>
+  <view class="m-cell" wx:if="{{OrderInfo.ShipMethod==1}}" style="display:flex;flex-flow: column;justify-content: space-between;align-items: stretch">
+    <view class="m-cell-bd">
+      <text>提货门店</text>
+    </view>
+    <view class="m-cell-ft m-order-typetxt" style="color:#717171;text-align:left;margin-top:20rpx">{{OrderInfo.ReservationStoreName||""}}</view>
+  </view> -->
+  <view class="detail-center">
+    <text>商品总额</text>
+    <view wx:if="{{OrderInfo.SecondType==16}}">{{OrderInfo.ProductPoint}}积分</view>
+    <view wx:else>￥{{OrderInfo.ProTotalMoney}}</view>
+  </view>
+  <view class="detail-center" wx:if="{{OrderInfo.ShipMethod!=0&&OrderInfo.StorePhone!=null}}">
+    <text>门店电话</text>
+    <view>{{OrderInfo.StorePhone}}</view>
+  </view>
+  <view class="detail-center">
+    <text>优惠券</text>
+    <view>-￥{{OrderInfo.CouponDiscount}}</view>
+  </view>
+  <view class="detail-center" wx:if="{{!(OrderInfo.LevelDiscount==0)}}">
+    <view>
+      <text>会员折扣</text>
+      <text>({{OrderInfo.MomentMemberDiscount}}折)</text>
+    </view>
+    <view>-￥{{OrderInfo.LevelDiscount}}</view>
+  </view>
+  <view class="detail-center" wx:if="{{!(OrderInfo.PointAsCash==0)}}">
+    <text>积分抵现</text>
+    <view>-￥{{OrderInfo.PointAsCash}}</view>
+  </view>
+  <view class="detail-center" wx:if="{{deduction>0}}">
+    <view>
+      <text>余额抵扣</text>
+    </view>
+    <view>-￥{{deduction}}</view>
+  </view>
+  <view class="detail-center" wx:if="{{OrderInfo.ShipMethod==0}}">
+    <text>运费</text>
+    <view class="m-order-typetxt">+￥{{OrderInfo.Freight}}</view>
+  </view>
+</view>
+<view class="m-total-info">
+  <view></view>
+  <view>合计:
+    <label class="m-total-price" wx:if="{{OrderInfo.SecondType==16}}">{{OrderInfo.ProductPoint}}积分</label>
+    <label class="m-total-price" wx:else>￥{{OrderInfo.RealTotal}}</label>
+    <!-- <text>(含运费￥{{OrderInfo.Freight}})</text> -->
+  </view>
+</view>
+<view wx:if="{{OrderInfo.Confirmreceipt}}" style="background:#f8f8f8;padding:20rpx">
+  <view class="btn" bindtap="hexiao">
+    确认核销
+  </view>
+</view>
+</block>

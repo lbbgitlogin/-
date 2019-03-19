@@ -1,0 +1,21 @@
+.m-container{padding: 0 80rpx;}
+.m-container image{height: 140rpx;width: 420rpx;margin: 0 auto;display: block;margin-top: 130rpx;}
+.input-item{border-bottom: 1px solid #bbb;height: 80rpx;line-height: 80rpx;font-size: 28rpx;position: relative;margin-bottom: 25rpx;box-sizing: border-box;}
+.input-item-name{width: 50rpx;height: 80rpx;text-align: center;}
+.input-item-title{position: absolute;left: 50rpx;top: 0;height: 80rpx;}
+.u-input{height: 80rpx;position: absolute;left: 140rpx;top: 0;width: 360rpx;}
+.input-item-clear{font-size: 30rpx;width: 80rpx;text-align: center;}
+.forget-password{font-size: 24rpx;margin-top: 30rpx;color: #999;
+/* text-align: center;margin:30rpx auto 10rpx; */
+width: 200rpx;}
+.iconfont{font-size: 40rpx;color: #1E91E7;}
+.login{text-align: center;padding: 12rpx 0;font-size: 28rpx;color: #2992e3}
+.choose{display: flex;width: 100%;margin: 100rpx auto;border: 4rpx solid #2992e3;border-radius: 6rpx}
+.select{text-align: center;background: #2992e3;padding: 12rpx 0;font-size: 28rpx;color: #fff}
+.vendor{flex: 1} 
+.store{flex:1}
+.login_Account{
+  width: 100%;
+  display: flex
+}
+.view1{width: 97%;border-bottom:1px solid #d4d4d4}

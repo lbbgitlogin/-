@@ -1,0 +1,55 @@
+<!--pages/registernum/registernum.wxml-->
+<view class='form'>
+  <view class='logo_wx'>
+    <image class="wx_logo" src="../../img/regi_logo.png"></image>
+  </view>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+  
+    <view class='view1'>
+      <view class='view'>账号</view>
+      <input type='text'  maxlength="200" placeholder="请输入账号，6-200个字符" bindinput="userAccount" name="userAccount"></input>
+    </view>
+
+
+
+    <view class='view1'>
+      <view class='view'>密码</view>
+      <input type='text' maxlength="20" password='true' placeholder="请输入6-20位数字和字母或字符组合" bindinput='passWord' name="passWord"></input>
+    </view>
+    <view class='view1'>
+      <view class='view'>确认密码</view>
+      <input type='text' password='true' maxlength="20" placeholder="请输入确认密码" bindinput='comPassWord' name="comPassWord"></input>
+    </view>
+      <view class='view1'>
+      <view class='view'>手机号</view>
+      <input placeholder="请输入手机号码" type="number" name="phone" maxlength="11" bindinput="phone"></input>
+      <!-- <text wx:if="{{send}}" class="sendMsg" bindtap="sendMsg">获取验证码</text>
+        <text wx:if="{{alreadySend}}" class="sendMsg" bindtap="sendMsg">{{second+"s"}}</text> -->
+    </view>
+    <view class="view1">
+      <text class='view'>短信验证码</text>
+      <input placeholder="短信验证码" maxlength="6"  style="width: 200rpx;right: 306rpx;" type="number" bindinput="code" name="code" />
+      <view class='re_fuhao'>|</view>
+      <text class="sendMsg" bindtap="sendmessage">{{btntext}}</text>
+      <!-- <text class="sendMsg" bindtap="sendMsg">{{second+"s"}}</text> -->
+    </view>
+    <view class='view1'>
+      <view class='view'>邀请码</view>
+      <input type='text' maxlength='20' wx:if="{{showcode == 1 && isshowchannelCode==2 }}"   value="1217898988"  bindinput="channelCode" name="channelCode"></input>
+      <input type='text' maxlength='20' wx:if="{{showcode == 1 && isshowchannelCode==1 }}"   value="{{channelCode11}}"  bindinput="channelCode" name="channelCode"></input>
+      <input type='text' wx:if="{{showcode == 2}}" value='{{coderegi}}' disabled="true"   bindinput="channelCode" name="channelCode"></input>
+    </view>
+    <view class='view2'>
+      <view class='pic_re' bindtap='check' wx:if="{{checknum == 0}}">
+        <image style="width: 100%;height: 100%;align: absmiddle;" src='../../img/false_re.png'></image>
+      </view>
+      <view class='pic_re' bindtap='checktr' wx:if="{{checknum == 1}}">
+        <image style="width: 100%;height: 100%;align: absmiddle;" src='../../img/true_re.png'></image>
+      </view>
+      <view class='re_tex1' bindtap='check'>我已看过并同意</view>
+      <view class='re_tex2' bindtap='agreement'>《商家使用服务协议》</view>
+    </view>
+    <!-- <view bindtap='next_pag' class='buttonnext'>下一步</view> -->
+    <button  class='buttonnext' formType="submit">下一步</button>
+  </form>
+</view>

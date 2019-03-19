@@ -1,0 +1,43 @@
+<view class="m-cells m-cells-wrap">
+  <view class='m-cells-left'>
+    <view class='m-cells-ordernum'>订单编号：{{OrderInfo.OrderNum}}</view>
+    <view class='m-cells-time'>下单时间：{{OrderInfo.CreateTime}}</view>
+  </view>
+  <view class='m-cells-right'wx:if="{{OrderInfo.OrderStatus=='订单成立'}}">未支付</view>
+   <view class='m-cells-right' wx:else>已支付</view>
+</view>
+<view class='content'>
+  <icon type="success" size="100" color="#1fb922" />
+  <text>{{OrderInfo.OrderStatus}}</text>
+</view>
+<view class="detail">
+ <view class="detail-center" style='height:81rpx'>
+    <text style='color:black'>{{OrderInfo.VendorShopName}}</text>
+    <view style='color:black'>优惠买单</view>
+  </view>
+  <view class="detail-center">
+    <text>消费金额</text>
+    <view>￥{{OrderInfo.ProTotalMoney}}</view>
+  </view>
+  <view class="detail-center">
+    <text>优惠金额</text>
+    <view>-￥{{OrderInfo.OrderTypeDiscount}}</view>
+  </view>
+  <view class="detail-center" wx:if="{{OrderInfo.CouponDiscount>0}}">
+    <text>优惠券</text>
+    <view>-￥{{OrderInfo.CouponDiscount}}</view>
+  </view>
+  <view class="detail-center" wx:if="{{deduction>0}}">
+    <view>
+      <text>余额抵扣</text>
+    </view>
+    <view>-￥{{deduction}}</view>
+  </view>
+  <view class="m-total-info">
+  <view>实际支付</view>
+  <view>
+    <label class="m-total-price">￥{{OrderInfo.RealTotal}}</label>
+    <!-- <text>(含运费￥{{OrderInfo.Freight}})</text> -->
+  </view>
+</view>
+</view>

@@ -1,0 +1,17 @@
+.m-container{padding: 0 50rpx;}
+.m-input-box{margin-top: 80rpx;}
+.input-item{border-bottom: 1px solid #bbb;height: 80rpx;line-height: 80rpx;font-size: 28rpx;position: relative;margin-bottom: 25rpx;box-sizing: border-box;}
+.input-item-name{width: 50rpx;height: 80rpx;text-align: center;}
+.input-item-title{position: absolute;left: 50rpx;top: 0;height: 80rpx;width:130rpx;}
+.u-input{height: 80rpx;position: absolute;left: 170rpx;top: 0;width: 380rpx;}
+.input-item-clear{position: absolute;right: 0;top: 0;font-size: 30rpx;width: 80rpx;text-align: center;}
+.get-code{position: absolute;background: #1E91E7;right: 10rpx;top:5rpx;height: 50rpx;line-height: 50rpx;text-align: center;width: 180rpx;color: white;border-radius: 8rpx;padding: 6rpx 0;}
+.iconfont{font-size: 40rpx;color: #1E91E7;}
+.sendMsg {
+background:#1E91E7;
+padding:5rpx 10rpx;
+letter-spacing:0;
+color:#fff;
+border-radius:10rpx;
+display:block;
+flex:1;}

@@ -1,0 +1,90 @@
+<view class='m-cells-nav' style='height:120rpx;width:91%;margin:0 auto'>
+<view class='m-cells-nav-a' >
+<image src="{{img}}"style='width:100rpx;height:100rpx;border-radius: 50%;'>
+<!-- <image src="{{img}}"></image> -->
+</image>
+<text>{{venName}}</text>
+<!-- <image src='../../img/rob.png' style='width:100rpx;height:140rpx' ></image> -->
+ <view class='m-cells-nav-b'>
+ <image id="imahe"src='../../img/rob.png' style='width:100rpx;height:140rpx' ></image>
+ <view class="con">
+ <text style=' padding-top:50rpx; padding-left:31rpx;color:white'>{{peopo}}</text>
+ <text style='padding-left:22rpx;color:white'>桌</text>
+ </view>
+ 
+</view>
+</view>
+ 
+</view>
+<view class="m-cells m-cells-wrap">
+  <view class='m-cells-left'>
+    <view class='m-cells-ordernum'>订单编号：{{OrderInfo.OrderNum}}</view>
+    <view class='m-cells-ordernum'>流水号：{{OrderInfo.SequenceNum}}</view>
+  </view>
+  <view class='m-cells-right'>{{OrderInfo.PayStatusName}}</view>
+</view>
+
+<view class='m-cells'>
+  <view class='top'>
+    <label class='havefood'>已选菜品({{OrderInfo.OrderDetailVOList.length}})</label>
+    <label class='foodnum'>就餐人数:{{OrderInfo.GuestCount}}人</label>
+  </view>
+  <view class='remark' wx:if='{{OrderInfo.Remark}}'>
+    <view>备注:</view>
+    <view class='conter'>
+      {{OrderInfo.Remark}}
+    </view>
+  </view>
+  <view class='fooddetail'>
+    <view class='fooddetail-title'>详单:</view>
+    <view class="message" style="" wx:for="{{OrderInfo.OrderDetailVOList}}" wx:for-item="item">
+      <view style="display:flex;width:80%;justify-content: space-between">
+        <text style='width:70%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;'>{{item.Name}}</text>
+        <text wx:if="{{item.SpecStr}}">({{item.SpecStr}})</text>
+        <text>×{{item.Amount}}</text>
+      </view>
+      <view class="m-order-typetxt" style='text-align:right'>{{item.TotalMoney}}</view>
+    </view>
+    <view class="message" style="" wx:for="{{OrderInfo.OrderDetailAddMealVOList}}" wx:for-item="items">
+      <view style="display:flex;width:80%;justify-content: space-between">
+        <text style='width:70%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;'>{{items.Name}}</text>
+        <text wx:if="{{item.SpecStr}}">({{items.SpecStr}})</text>
+        <text>×{{items.Amount}}</text>
+      </view>
+      <view class="m-order-typetxt" style='text-align:right'>{{items.TotalMoney}}</view>
+    </view>
+    <view class="detail">
+      <view class="detail-center">
+        <text>小计</text>
+        <view style='color:#db384c'>￥{{OrderInfo.TotalMoney}}</view>
+      </view>
+      <view class="detail-center" wx:if='{{OrderInfo.CouponDiscount!=0}}'>
+        <text>优惠券</text>
+        <view>-￥{{OrderInfo.CouponDiscount}}</view>
+      </view>
+      <view class="detail-center" wx:if="{{OrderInfo.MemberDiscountMoney!=0}}">
+        <view>
+          <text>会员折扣</text>
+          <text>({{OrderInfo.MomentMemberDiscount}}折)</text>
+        </view>
+        <view>-￥{{OrderInfo.MemberDiscountMoney}}</view>
+      </view>
+      <view class="detail-center" wx:if="{{OrderInfo.PointAsCash!=0}}">
+        <text>积分抵现</text>
+        <view>-￥{{OrderInfo.PointAsCash}}</view>
+      </view>
+      <view class="detail-center" wx:if="{{deduction>0}}">
+        <view>
+          <text>余额抵扣</text>
+        </view>
+        <view>-￥{{deduction}}</view>
+      </view>
+    </view>
+    <view class="m-total-info">
+      <view>实付款</view>
+      <view>
+        <label class="m-total-price">￥{{OrderInfo.RealTotal}}</label>
+      </view>
+    </view>
+  </view>
+</view>

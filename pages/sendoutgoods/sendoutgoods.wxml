@@ -1,0 +1,402 @@
+<!-- <view class="m-container">
+    
+    <view class="m-title">请选择快递公司</view>
+
+    <scroll-view class="wxSortPickerViewTemTags">
+            <block wx:for="{{['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']}}" wx:for-item="item" wx:key="">
+                <view bindtap="wxSortPickerViewTemTagTap" data-tag="{{item}}" class="wxSortPickerViewTemTag">{{item}}</view>
+            </block>
+    </scroll-view>
+    <view class="letter-selected" wx:if="{{isShow}}" >{{lettersel}}</view>
+</view>
+
+<scroll-view scroll-y="true" class="m-scroll-box" scroll-into-view="{{scrollintoview}}" scroll-with-animation="true">
+    
+<view  bindtap="selectedcompany" data-id="{{item.id}}" data-key="{{item.keyStr}}" style="background:{{selectedId == item.id?'#E5E5E5':'#FFFFFF'}};" id="{{item.keyStr}}" class="scroll-item" wx:for="{{Companies}}">{{item.name}}
+        <image src="../../img/check.png" class="item-check" wx:if="{{selectedId ==  item.id}}"></image>
+    </view>
+</scroll-view>
+
+<view wx:if="{{logisticsKey!='VENDOR'&&logisticsKey!='CLIENT'&&logisticsKey!='OTHER'}}">
+  <view class="m-title">请输入快递单号</view>
+  <view class="m-input-box">
+      <input class="u-input" type="number" bindinput="inputdeliverynum" value="{{deliveryNum}}"/>
+      <view class="u-input-clear"  bindtap="clearnum" wx:if="{{isNum}}">✕</view>
+      <view class="m-scan" bindtap="sao">
+            <label class="iconfont icon-importedlayerscopy2" style="font-size:40rpx;"></label>
+      </view>
+  </view>
+</view>
+
+<view wx:if="{{logisticsKey=='VENDOR'||logisticsKey=='OTHER'}}">
+  <view class="m-title"></view>
+  <view class="m-input-box" style="border-top:2rpx solid #d9d9d9;border-bottom:2rpx solid #d9d9d9;font-size:28rpx">
+      <input class="u-input" bindinput="inputname" value="{{deliveryNum}}" placeholder="请填写送货人姓名"/>
+  </view>
+  <view class="m-input-box" style="border-bottom:2rpx solid #d9d9d9;font-size:28rpx">
+      <input class="u-input" type="number" bindinput="inputphone" value="{{phone}}" placeholder="请填写送货人手机号"/>
+  </view>
+</view>
+
+<view wx:if="{{logisticsKey=='CLIENT'}}">
+  <view class="m-title"></view>
+  <view class="m-input-box" style="border-top:2rpx solid #d9d9d9;border-bottom:2rpx solid #d9d9d9;font-size:28rpx">
+      <input class="u-input" bindinput="inputname" value="{{deliveryNum}}" placeholder="请填写提货人姓名"/>
+  </view>
+  <view class="m-input-box" style="border-bottom:2rpx solid #d9d9d9;font-size:28rpx">
+      <input class="u-input" type="number" bindinput="inputphone" value="{{phone}}" placeholder="请填写提货人手机号"/>
+  </view>
+</view>
+<view class="btn_box" bind="login">
+    <button class="u-btn u-btn-default" bindtap="submitdata" style="margin:80rpx auto;width:80%;">发货</button>
+</view>
+
+
+
+ -->
+<view class="m-cells m-panel-hd1">
+  <label>订单编号：{{orderNum}}</label>
+</view>
+<view class="m-cells m-panel-hd2">
+  <view class='distribution'>
+    <view class='title'>配送方式</view>
+    <text class='{{logisticsType==1?"select1":"select"}}' bindtap='kuaidi'>快递发货</text>
+    <text class='{{logisticsType==2?"select1":"select"}}' bindtap='tongcheng'>同城配送</text>
+  </view>
+  <picker mode='selector' bindchange="bindPickerChange" value="{{index}}" range="{{Companies}}" range-key="name" wx:if='{{logisticsType==1}}'>
+    <view class="picker m-cell-ft">
+      <label class='choice'>选择快递</label>
+      <label class='company' wx:if='{{logisticsname}}'>{{Companies[index].name}}</label>
+      <label class='company' wx:if='{{logisticsname==""}}'>点击选择快递公司</label>
+    </view>
+  </picker>
+  <picker mode='selector' bindchange="bindPickerChange1" value="{{index1}}" range="{{StoreList.CitySendTypeList}}" range-key="CitySendTypeStr" wx:if='{{logisticsType==2}}'>
+    <view class="picker m-cell-ft">
+      <label class='choice'>配送方</label>
+      <label class='company' wx:if='{{CitySendTypeStr}}'>{{StoreList.CitySendTypeList[index1].CitySendTypeStr}}</label>
+      <label class='company' wx:if='{{CitySendTypeStr==""}}'>点击选择配送方</label>
+    </view>
+  </picker>
+</view>
+<!-- 快递发货 普通快递-->
+<view class='m-cells' style='margin-top:20rpx' wx:if='{{(logisticsType==1&&logisticsname!="其他配送")&&(logisticsType==1&&logisticsname!="商家自送")||(logisticsType==1&&logisticsname=="")}}'>
+  <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>运单号:</label>
+    <view style='display:flex;align-items: center'>
+      <input placeholder-style='color:#999' placeholder='请填写' bindinput='yundanhao' value='{{yundanhao}}' style='margin-right:20rpx' maxlength='30'></input>
+      <image src='../../img/screen.png' style='width:40rpx;height:40rpx' bindtap='sao'></image>
+    </view>
+  </view>
+  <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>发货人:</label>
+    <view>
+      <input placeholder-style='color:#999' placeholder='请填写' bindinput='kuaifahuoren' value='{{kuaifahuoren}}' maxlength='20'></input>
+    </view>
+  </view>
+  <view class='m-cell'>
+    <label>发货日期:</label>
+    <picker mode='date' bindchange="bindDateChange" value="{{date}}">
+      <view class="picker-date m-cell-ft">
+        <label class='company' wx:if='{{date}}'>{{date}}</label>
+        <label class='company' wx:if='{{date==""}}'>点击选择发货日期</label>
+      </view>
+    </picker>
+  </view>
+  <view class='m-cell'>
+    <label>发货时间:</label>
+    <picker mode='time' bindchange="bindTimeChange" value="{{time}}">
+      <view class="picker-time m-cell-ft">
+        <label class='company' wx:if='{{time}}'>{{time}}</label>
+        <label class='company' wx:if='{{time==""}}'>点击选择发货时间</label>
+      </view>
+    </picker>
+  </view>
+  <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>物流费用:</label>
+    <view>
+    <input placeholder-style='color:#999' placeholder='请填写' bindinput='wuliufeiyong' type='digit' maxlength='8'></input>
+    </view>
+  </view>
+</view>
+<!-- 快递发货 商家自送 其他配送 -->
+<view class='m-cells' style='margin-top:20rpx' wx:if='{{(logisticsType==1&&logisticsname=="其他配送")||(logisticsType==1&&logisticsname=="商家自送")}}'>
+  <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>送货人:</label>
+    <view>
+      <input placeholder-style='color:#999' placeholder='请填写' bindinput='kuaifahuoren' value='{{kuaifahuoren}}' maxlength='20'></input>
+    </view>
+  </view>
+  <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>手机号:</label>
+    <view>
+      <input placeholder-style='color:#999' placeholder='请填写' bindinput='kuaishoujihao' value='{{kuaishoujihao}}' maxlength='11'></input>
+    </view>
+  </view>
+  <view class='m-cell'>
+    <label>发货日期:</label>
+    <picker mode='date' bindchange="bindDateChange" value="{{date}}">
+      <view class="picker-date m-cell-ft">
+        <label class='company' wx:if='{{date}}'>{{date}}</label>
+        <label class='company' wx:if='{{date==""}}'>点击选择发货日期</label>
+      </view>
+    </picker>
+  </view>
+  <view class='m-cell'>
+    <label>发货时间:</label>
+    <picker mode='time' bindchange="bindTimeChange" value="{{time}}">
+      <view class="picker-time m-cell-ft">
+        <label class='company' wx:if='{{time}}'>{{time}}</label>
+        <label class='company' wx:if='{{time==""}}'>点击选择发货时间</label>
+      </view>
+    </picker>
+  </view>
+</view>
+
+<!-- 同城配送 商家自送-->
+<view class='m-cells' style='margin-top:20rpx' wx:if='{{(logisticsType==2&&CitySendTypeStr=="商家自送")||(logisticsType==2&&CitySendTypeStr=="")}}'>
+  <view class='m-cell' bindtap='bindPickerChange2'>
+    <image src='../../img/xing.png' bindtap="bindPickerChange2" class='xing'></image><view style='width:160rpx'>选择门店:</view>
+
+    <view wx:if="{{showfont}}" class='m_font' style='width:73%'>{{showfont}}</view>
+  
+     <view wx:if="{{!showfont}}" class='m_font' style='width:73%'>请选择</view>
+      <text class="m-cell-ft"></text>
+    <!-- <picker mode='selector' bindchange="bindPickerChange2" value="{{index2}}" range="{{StoreList2}}" range-key="StoreName">
+      <view class="picker-store m-cell-fta">
+            <label class='company' wx:if='{{StoreName}}'>{{StoreList2[index2].StoreName}}</label>
+            <label class='company' wx:if='{{StoreName==""}}'>点击选择门店</label>
+      </view>
+    </picker> -->
+
+
+
+
+
+  </view>
+  <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>送货人:</label>
+    <view>
+      <input placeholder-style='color:#999' placeholder='请填写' bindinput='tongfahuoren' value='{{tongfahuoren}}' maxlength='20'></input>
+    </view>
+  </view>
+  <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>手机号:</label>
+    <view>
+      <input placeholder-style='color:#999' placeholder='请填写' bindinput='tongshoujihao' value='{{tongshoujihao}}' maxlength='11'></input>
+    </view>
+  </view>
+  <view class='m-cell'>
+    <label>发货日期:</label>
+    <picker mode='date' bindchange="tongbindDateChange" value="{{tongdate}}">
+      <view class="picker-date m-cell-ft">
+        <label class='company' wx:if='{{tongdate}}'>{{tongdate}}</label>
+        <label class='company' wx:if='{{tongdate==""}}'>点击选择发货日期</label>
+      </view>
+    </picker>
+  </view>
+  <view class='m-cell'>
+    <label>发货时间:</label>
+    <picker mode='time' bindchange="tongbindTimeChange" value="{{tongtime}}">
+      <view class="picker-time m-cell-ft">
+        <label class='company' wx:if='{{tongtime}}'>{{tongtime}}</label>
+        <label class='company' wx:if='{{tongtime==""}}'>点击选择发货时间</label>
+      </view>
+    </picker>
+  </view>
+</view>
+<!--同城配送 达达配送 -->
+<view class='m-cells' style='margin-top:20rpx' wx:if='{{logisticsType==2&&CitySendTypeStr=="达达配送"}}'>
+  <view class='m-cell m-cell-access' style='padding:15rpx 16rpx 15rpx 60rpx'  bindtap='bindPickerChange3' >
+    <image src='../../img/xing.png' class='xing'></image><label>选择门店:</label>
+    <!-- <picker mode='selector' bindchange="bindPickerChange3" value="{{index3}}" range="{{StoreList1}}" range-key="StoreName">
+      <view class="picker-store m-cell-ft">
+        <label class='company' wx:if='{{DStoreName}}'>{{StoreList1[index3].StoreName}}</label>
+        <label class='company' wx:if='{{DStoreName==""}}'>点击选择门店</label>
+      </view>
+    </picker> -->
+    <view wx:if="{{fontshow}}"  class='m_font'>{{fontshow}}</view>
+      <view wx:if="{{!fontshow}}" class='m_font' >请选择</view>
+      <text  class="m-cell-ft"></text>
+  </view>
+  <view class='m-cell'>
+    <label>保送价:</label>
+    <picker mode='selector' bindchange="bindPickerChange4" value="{{index4}}" range="{{StoreList.DaDaKeepPriceList}}" range-key="DaDaKeepPriceRemark">
+      <view class="picker-store m-cell-ft">
+        <label class='company'>{{StoreList.DaDaKeepPriceList[index4].DaDaKeepPriceRemark}}</label>
+      </view>
+    </picker>
+  </view>
+  <view class='m-cell'>
+    <!-- <image src='../../img/xing.png' class='xing'></image> --><label>配送价格:</label> 
+    <view class="picker-store">
+       <view style='padding-right:16rpx'>{{peisongjia}}</view> <label style='color:#2992e3;font-size:24rpx' bindtap='GetOrderDaDaFreight'>查看</label> 
+    </view>
+  </view>
+</view>
+<!-- 同城配送 uu跑腿 -->
+<view class='m-cells' style='margin-top:20rpx'  wx:if='{{logisticsType==2&&CitySendTypeStr=="UU配送"}}'>
+  <view class='m-cell' bindtap='bindPickerChange6'>
+    <image src='../../img/xing.png' bindtap="bindPickerChange6" class='xing'></image><view style='width:160rpx'>选择门店:</view>
+
+    <view wx:if="{{uushowfont}}" class='m_font' style='width:73%'>{{uushowfont}}</view>
+  
+     <view wx:if="{{!uushowfont}}" class='m_font' style='width:73%'>请选择</view>
+      <text class="m-cell-ft"></text>
+    <!-- <picker mode='selector' bindchange="bindPickerChange2" value="{{index2}}" range="{{StoreList2}}" range-key="StoreName">
+      <view class="picker-store m-cell-fta">
+            <label class='company' wx:if='{{StoreName}}'>{{StoreList2[index2].StoreName}}</label>
+            <label class='company' wx:if='{{StoreName==""}}'>点击选择门店</label>
+      </view>
+    </picker> -->
+
+
+
+
+
+  </view>
+  <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>是否使用优惠券:</label>
+    <view style="flex: 1;text-align: right;">
+    <picker style='font-size:28rpx;color:#999' bindchange="pickerClick" value='{{pickerIndex}}' range='{{pickerData}}'>{{pickerData[pickerIndex]}}</picker>  
+      <!-- <input placeholder-style='color:#999' placeholder='请填写' bindinput='tongfahuoren' value='{{tongfahuoren}}' maxlength='20'></input> -->
+    </view>
+  </view>
+  <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>是否使用保温箱:</label>
+    <view style="flex: 1;text-align: right;">
+      <picker  style='font-size:28rpx;color:#999' bindchange="pickerClick1" value='{{pickerIndex1}}' range='{{pickerData1}}'>{{pickerData1[pickerIndex1]}}</picker>  
+    </view>
+  </view>
+   <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>发货时间:</label>
+    <view style="flex: 1;text-align: right;">
+      <picker  style='font-size:28rpx;color:#999' bindchange="pickerClick2" value='{{pickerIndex2}}' range='{{pickerData2}}'>{{pickerData2[pickerIndex2]}}</picker>  
+    </view>
+  </view>
+  <view class='m-cell' wx:if="{{pickerData2[pickerIndex2] == '预约时间'}}">
+    <image src='../../img/xing.png' class='xing'></image><label>发货日期:</label>
+    <picker mode='date' bindchange="uubindDateChange" value="{{uudate}}">
+      <view class="picker-date m-cell-ft">
+        <label class='company' wx:if='{{uudate}}'>{{uudate}}</label>
+        <label class='company' wx:if='{{uudate==""}}'>点击选择发货日期</label>
+      </view>
+    </picker>
+  </view>
+  <view class='m-cell' wx:if="{{pickerData2[pickerIndex2] == '预约时间'}}">
+    <image src='../../img/xing.png' class='xing'></image><label>发货时间:</label>
+    <picker mode='time' bindchange="uubindTimeChange" value="{{uutime}}">
+      <view class="picker-time m-cell-ft">
+        <label class='company' wx:if='{{uutime}}'>{{uutime}}</label>
+        <label class='company' wx:if='{{uutime==""}}'>点击选择发货时间</label>
+      </view>
+    </picker>
+  </view>
+    <view class='m-cell'>
+    <image src='../../img/xing.png' class='xing'></image><label>配送价格:</label> 
+    <view class="picker-store">
+       <view style='padding-right:16rpx'>{{uupeisongjia}}</view> <label style='color:#2992e3;font-size:24rpx' bindtap='uuGetOrderDaDaFreight'>查看</label> 
+    </view>
+  </view>
+</view>
+<view class='fahuo' bindtap='fahuo'>确认发货</view>
+<!-- <view class='scro_fh'  wx:if="{{SuitProducts}}">
+    <scroll-view scroll-y="true" bindscrolltolower="scrollbottom" bindscroll="scrollView" bindscrolltoupper="scrollTop">
+      <view  wx:for="{{StoreList2}}"  wx:for-item="item">
+           <view>{{item.StoreName}}</view>
+      
+      </view>
+      <view class="m-loading-box">
+        <block wx:if="{{ispage}}">
+          <view class="u-loadmore">
+            <lael class="u-loading"></lael>
+            <text class="u-loadmore-tips">正在加载</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="u-loadmore u-loadmore-line">
+            <text class="u-loadmore-tips">没有更多数据啦！</text>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view> -->
+
+  <view class='msk' wx:if="{{SuitProducts}}">
+    <view class='msk-conter'>
+      <view class='msk-title'>
+        <label catchtap='close_msk'>关闭</label>
+      </view>
+      <scroll-view scroll-y class='msk-scroll' bindscrolltolower="scrollbottom">
+          <view class='msk-font' bindtap='mskShow' data-font='{{item.StoreName}}'  wx:for="{{StoreList2}}"  wx:for-item="item">
+           <view>{{item.StoreName}}</view>
+      
+      </view>
+          <view class="m-loading-box">
+        <block wx:if="{{ispage}}">
+          <view class="u-loadmore">
+            <lael class="u-loading"></lael>
+            <text style="background-color:#fff" class="u-loadmore-tips">正在加载</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="u-loadmore u-loadmore-line">
+            <text style="background-color:#fff" class="u-loadmore-tips">没有更多数据啦！</text>
+          </view>
+        </block>
+      </view>
+      </scroll-view>
+    </view>
+  </view>
+
+   <view class='msk' wx:if="{{Suit}}">
+    <view class='msk-conter'>
+      <view class='msk-title'>
+        <label catchtap='close'>关闭</label>
+      </view>
+      <scroll-view scroll-y class='msk-scroll' bindscrolltolower="scrollbo">
+          <view class='msk-font' bindtap='Showmsk' data-font='{{item.StoreName}}'  wx:for="{{StoreList1}}"  wx:for-item="item" data-code='{{item.ShopCode}}'>
+           <view>{{item.StoreName}}</view>
+      
+      </view>
+          <view class="m-loading-box">
+        <block wx:if="{{ispagee}}">
+          <view class="u-loadmore">
+            <lael class="u-loading"></lael>
+            <text style="background-color:#fff" class="u-loadmore-tips">正在加载</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="u-loadmore u-loadmore-line" style='background-color:#fff'>
+            <text style="background-color:#fff" class="u-loadmore-tips">没有更多数据啦！</text>
+          </view>
+        </block>
+      </view>
+      </scroll-view>
+    </view>
+  </view>
+    <view class='msk' wx:if="{{uugo}}">
+    <view class='msk-conter'>
+      <view class='msk-title'>
+        <label catchtap='close_msk1'>关闭</label>
+      </view>
+      <scroll-view scroll-y class='msk-scroll' bindscrolltolower="uuscroll">
+          <view class='msk-font' bindtap='uuShow' data-storeid='{{item.VendorStoreId}}' data-font='{{item.StoreName}}'  wx:for="{{StoreList3}}"  wx:for-item="item">
+           <view>{{item.StoreName}}</view>
+      
+      </view>
+          <view class="m-loading-box">
+        <block wx:if="{{uupage}}">
+          <view class="u-loadmore">
+            <lael class="u-loading"></lael>
+            <text style="background-color:#fff" class="u-loadmore-tips">正在加载</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="u-loadmore u-loadmore-line">
+            <text style="background-color:#fff" class="u-loadmore-tips">没有更多数据啦！</text>
+          </view>
+        </block>
+      </view>
+      </scroll-view>
+    </view>
+  </view>

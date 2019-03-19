@@ -1,0 +1,149 @@
+.home-top-box {
+  height: 440rpx;
+  box-sizing: border-box;
+  text-align: center;
+  color: white;
+  padding-top: 50rpx;
+  position: relative;
+  font-size: 28rpx;
+  background: #1e91e7;
+  width: 750rpx;
+  overflow: hidden;
+}
+
+.top-tip {
+  font-size: 36rpx;
+}
+
+.top-money {
+  font-size: 100rpx;
+  margin-top: 30rpx;
+}
+
+.g-flex-box {
+  position: absolute;
+  bottom: 35rpx;
+  width: 100%;
+  display: flex;
+}
+
+.flex-item {
+  flex: 1;
+}
+
+.flex-item-text {
+  border-right: 1px solid white;
+}
+
+.flex-item-num {
+  margin-bottom: 20rpx;
+}
+
+.home-content-box {
+  padding: 10rpx 30rpx 0;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+}
+
+.content-title {
+  font-size: 34rpx;
+  line-height: 50rpx;
+  margin-top: 15rpx;
+  text-align: left;
+}
+
+.order-box {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+}
+
+.order-item {
+  flex: 1;
+  color: #999;
+  font-size: 24rpx;
+  padding-bottom: 20rpx;
+  line-height: 40rpx;
+}
+
+.order-item-num {
+  color: black;
+  font-size: 32rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+/*background:url(../../img/home-bg.png) center top no-repeat #1E91E7;background-size: cover;*/
+
+.top-img001 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2400rpx;
+  height: 195rpx;
+}
+
+.top-img003 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 2400rpx;
+  height: 195rpx;
+}
+
+.move1 {
+  position: relative;
+  width: 100%;
+  height: 195rpx;
+  animation: mymove1 8.2s linear infinite alternate;
+  -webkit-animation: mymove1 8.2s linear infinite alternate; /*Safari and Chrome*/
+}
+
+@keyframes mymove1 {
+  from {
+    right: 0px;
+  }
+
+  to {
+    right: 1200rpx;
+  }
+}
+
+@-webkit-keyframes mymove1 {
+  from {
+    right: 0px;
+  }
+
+  to {
+    right: 1200rpx;
+  }
+}
+
+.move2 {
+  position: relative;
+  animation: mymove2 8.2s linear infinite alternate;
+  width: 100%;
+  height: 195rpx;
+  -webkit-animation: mymove2 8.2s linear infinite alternate; /*Safari and Chrome*/
+}
+
+@keyframes mymove2 {
+  from {
+    left: 0px;
+  }
+
+  to {
+    left: 1200rpx;
+  }
+}
+
+@-webkit-keyframes mymove2 {
+  from {
+    left: 0px;
+  }
+
+  to {
+    left: 1200rpx;
+  }
+}

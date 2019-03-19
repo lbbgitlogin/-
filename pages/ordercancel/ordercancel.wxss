@@ -1,0 +1,8 @@
+
+.top{height: 120rpx;display: flex;align-items: center;font-size: 34rpx;padding-left: 44rpx;background: #fff;position: relative}
+.top:after {content: " ";position: absolute;left: 0;bottom: 0;right: 0;height: 1px;border-bottom: 1px solid #CCCCCC;color: #CCCCCC;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);z-index: 3;} 
+.radio-group{background: #fff;padding-bottom: 20rpx}
+.radio{padding: 34rpx 0;transform: scale(0.8);display: block;margin: -38rpx;}
+.page__bd{margin-top: 20rpx}
+textarea{width: 85%;height: 200rpx;background: #f5f5f5;padding: 20rpx;font-size: 24rpx;margin: 34rpx 0rpx 0rpx 44rpx}
+.cancel{width: 60%;margin: 40rpx auto;height: 100rpx;color: #fff;background: #1d91e7;text-align: center;line-height: 100rpx;font-size: 32rpx;border-radius: 10rpx}

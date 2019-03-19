@@ -1,0 +1,40 @@
+<view style="background:#f8f8f8">
+  <view class="paysuccess">
+    <label><image src="../../img/true.png" style="width:40rpx;height:40rpx;margin-top:8rpx"></image></label>
+    <text style="margin-left:10rpx">{{info.PayStatus}}</text>
+  </view>
+  <view class="content">
+    <view class="store">
+      {{info.VendorShopName}}
+    </view>
+    <view class="details">
+      <view class="details-left">
+        
+        <view class="charge">
+          <text>消费金额：<text style="color:red">{{info.ProTotalMoney}}</text> 元</text>
+        </view>
+        <view class="pay">
+          <text>实际支付：<text style="color:red">{{info.RealTotal}}</text> 元</text>
+        </view>
+        <view class="monetary">
+          <text>优惠金额：<text style="color:red">{{discount}}</text> 元</text>
+        </view>
+      </view>
+      <view class="details-right">
+        <view class="num">
+          <text>订单编号：{{info.OrderNum}}</text>
+        </view>
+        <view class="time">
+          <text>消费时间：{{info.CreateTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="u-cleanbox"></view>
+  <view class="m-footer-btn">
+    <form report-submit="true" bindsubmit="gotopay">
+      <button data-ON="{{info.OrderNum}}" wx:if="{{info.ShowOrderButton.IsPay}}" class="u-link-btn" formType="submit">去支付</button>
+    </form>
+    <view data-ON="{{info.OrderNum}}" wx:if="{{info.ShowOrderButton.IsCancel}}" class="u-link-btn" bindtap="cancelOrder">取消订单</view>
+  </view> -->
+</view>

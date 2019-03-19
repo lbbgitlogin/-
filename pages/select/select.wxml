@@ -1,0 +1,62 @@
+
+
+
+
+
+
+
+
+<!-- 
+<view>
+  <block wx:for="{{select}}">
+    <view data-id='{{item.Id}}'  bindtap='childcate'   class='select_list m-cell-access'>
+      <view class='select_last m-cell-access' >
+        <view class='select_name'>{{item.Name}}</view>
+        <text class="m-cell-ft"></text>
+      </view>
+
+    </view>
+    <view class="select_small {{siclos== 1?'mar1':''}}">
+      <view wx:for="{{childcate}}" wx:for-item="items" class='{{back_sele == 0 ?"select_ler":"select_smaller"}}' bindtap='smaller'>
+        {{items.Name}}
+      </view>
+
+    </view>
+  </block>
+</view>
+ -->
+
+<!-- <view wx:for="{{select}}">
+  <view bindtap='childcate' class='select_list m-cell-access' data-id='{{item.Id}}'>
+    <view class='select_last m-cell-access'>
+      <view class='select_name'>{{item.Name}}</view>
+      <text class="m-cell-ft"></text>
+    </view>
+  </view>
+  <view  class="select_small"   >
+    <view bindtap='smaller' wx:key='index' wx:for-index="bindex" data-title=' {{items.Name}}'  data-bindex='{{bindex}}'  class='{{back_sele == 0 ?"select_ler":"select_smaller"}}' wx:if="{{item.content}}" wx:for="{{item.content}}" wx:for-item="items">
+      {{items.Name}}
+    </view>
+  </view>
+</view>
+<view class='sure_sub' bindtap='selectAddress'>
+  确定
+</view> -->
+
+<view wx:for="{{select}}">
+  <view class='f_category' bindtap='childcate' data-id='{{item.Id}}'>
+    <view>{{item.Name}}</view>
+    <label class="iconfont icon-right"></label>
+  </view>
+  <view class='s_category_box' wx:if="{{item.content && select_id == item.Id}}">
+    <view class='s_category_item {{items.checked?"checked":""}}' catchtap='selectCategory' wx:for="{{item.content}}" wx:for-item="items" data-id='{{items.Id}}' data-fid="{{item.Id}}">
+      {{items.Name}}
+    </view>
+  </view>
+</view>
+
+<view class='my_coupon' bindtap='selectAddress'>
+  <view class='submit' >
+     确定
+  </view>
+</view>

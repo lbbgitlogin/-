@@ -1,0 +1,53 @@
+<view class="m-banner">
+    <view class="top-img001">
+        <image src="../../img/img001.png" class="move1"></image> 
+    </view>
+    <view class="top-img003">
+        <image src="../../img/img002.png" class="move2"></image>
+    </view>
+    <view class="m-logo">
+      <image src="{{LogoPath}}" />
+    </view>
+    <view class="m-shopinfo">
+      <label>{{ShopName}}</label>
+      <label class="iconfont icon-qijiandian"></label>
+      <text>手机号：{{Phone}}</text>
+    </view>
+
+
+</view>
+
+<view class="m-panel-bd" style="margin-top:30rpx;">
+    <view class="m-media-box m-media-box-small-appmsg">
+        <view class="m-cells">
+            <view class="m-cell m-cell-access">
+                <view class="m-cell-hd " style="color:#F77A04;">
+                  <label class="iconfont icon-jiaoyiloudou "></label>
+                 </view>
+                <view class="m-cell-bd m-cell-primary">
+                    <p>剩余：{{VendorLicenseRemainingDays}}天</p>
+                </view>
+            </view>
+             <view class="m-cell m-cell-access">
+                <view class="m-cell-hd " style="color:#FF5577;">
+                  <label class="iconfont icon-time"></label>
+                 </view>
+                <view class="m-cell-bd m-cell-primary">
+                    <p>到期时间：{{VendorLicenseEndTimeText}}</p>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-info-box">
+    <view class="m-info-kefu" style="color:#1E91E7;">
+         <label class="iconfont icon-kefu"></label>
+    </view>
+    <view>如果您需要续费，请联系服务商！</view>
+    <view>服务商：{{Store.NickName}}</view>
+    <view>手机号：<text style="color:#1E91E7;">{{Store.CellPhone}}</text></view>
+    <view>邮<text style="color:white;">空</text>箱：{{Store.Email}}</view>
+</view>
+
+ 

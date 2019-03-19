@@ -1,0 +1,107 @@
+<!--pages/coupon/coupon.wxml-->
+<view class="m-container">
+  <view wx:if="{{logisticsKey!='VENDOR'&&logisticsKey!='CLIENT'&&logisticsKey!='OTHER'}}">
+    <view class="m-title">请输入优惠券核销码</view>
+    <view class="m-input-box">
+      <!-- {{deliveryNum}}   -->
+      <input class="u-input" type="number" bindinput="inputdeliverynum" value="{{deliveryNum}}" bindblur="EventHandle" />
+      <view class="u-input-clear" bindtap="clearnum" wx:if="{{isNum}}">✕</view>
+      <view class="m-scan" bindtap="sao">
+        <label class="iconfont icon-importedlayerscopy2" style="font-size:40rpx;"></label>
+      </view>
+    </view>
+
+  </view>
+
+</view>
+<view class="btn" bindtap="find" style="margin-top:40rpx" wx:if="{{isShow}}">
+  查询
+</view>
+
+<!--  -->
+<block wx:if='{{isorderInfo}}'>
+  <view class="m-cells m-cells-wrap">
+    <view class='m-cells-left' style="width: 100%;height: 50rpx;">
+      <label class='m-cells-ordernum' style='float:left'>{{OrderInfo.Name}}</label>
+      <label class='m-cells-ordernum' style='float:right;color:#9B9B9B;font-size:24rpx;line-height:56rpx;'>{{OrderInfo.StatusStr}}</label>
+    </view>
+    <view class='m-cells-left' style="width: 100%;height: 88rpx;">
+      <label class='m-cells-ordernum' style="color: #DB384C;font-size: 15px;line-height: 103rpx;">￥</label>
+      <label class='m-cells-ordernum' style="color: #DB384C;font-size: 30px;margin-right:28rpx;">{{OrderInfo.DiscountMoney}} </label>
+      <label class='m-cells-ordernum' style="color: #9B9B9B;font-size: 12px;line-height: 107rpx;">{{OrderInfo.MoneyLimitText}}</label>
+    </view>
+    <view class='m-cells-right'>{{OrderInfo.StrValidateEnd}}</view>
+    <view wx:if="{{OrderInfo.Status == 0}}" class="btn" bindtap="hexiao" style='position:absolute;top:62%;right:3%'>
+      核销
+    </view>
+    <view wx:if="{{OrderInfo.Status == 1}}" class="btn" style='position:absolute;top:62%;right:3%;background:#ccc'>
+      核销
+    </view>
+    <view wx:if="{{OrderInfo.Status == 2}}" class="btn" style='position:absolute;top:62%;right:3%;background:#ccc'>
+      核销
+    </view>
+  </view>
+  <view class='box_shop'>
+    适用商品
+  </view>
+  <view bindtap='inputs' wx:if="{{!inputshow}}" class="u-search-box">
+    <view class="u-search-cont">
+      <icon type="search" size="14"></icon>
+      <text>输入商品编码或商品名称</text>
+    </view>
+  </view>
+  <view class="m-search-box" wx:if="{{inputshow}}">
+    <view class="u-input-search">
+      <input type="text" bindinput="startinput" value="{{souval}}" bindblur="overinput" focus="true" bindconfirm="search" placeholder="输入商品编码或商品名称" />
+    </view>
+  </view>
+
+  <!-- 适合商品 -->
+  <view>
+    <view class="m-scroll-box">
+      <view scroll-y="true"  class="m-product-all u-paa {{istop?'u-patop':'u-pabtn'}}">
+
+        <view class="m-product-list " style="padding-top:0;">
+          <navigator wx:for="{{SuitProduct}}" wx:for-item="item" url="{{item.ProductForm==2?'../../server/productdetail/productdetail':'../productdetail/productdetail'}}?pid={{item.id}}" class="m-product-item">
+            <view class="m-product-img">
+              <image src="{{item.ProductPic}}" mode="aspectFill" />
+            </view>
+            <view class="m-product-info">
+              <view class="m-product-name">
+                <label>{{item.SalesName}}</label>
+              </view>
+              <view class="m-product-price">
+                <label>{{Currency}}</label>{{item.SalePrice}}
+              </view>
+            </view>
+          </navigator>
+        </view>
+
+        <view class="m-loading-box">
+          <block wx:if="{{ispage}}">
+            <view class="u-loadmore">
+              <lael class="u-loading"></lael>
+              <text class="u-loadmore-tips">正在搜索</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="u-loadmore u-loadmore-line">
+              <text class="u-loadmore-tips">没有更多数据啦！</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="m-nullcontent" wx:if="{{SuitProducts <= 0}}">
+    <view class="m-nullpage-middle">
+      <label class="iconfont icon-meiyougengduo"></label>
+      <view class="m-null-tip">
+        <text>亲~什么都没有</text>
+        <text>该优惠券没有可适用的商品~</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 适合商品 -->
+</block>
